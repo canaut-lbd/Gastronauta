@@ -23,7 +23,6 @@ body {
     background-color: var(--beige);
     font-family: 'NeueWorld', serif;
     background: transparent;
-    overflow-x: hidden;
 }
 
 /* =============================================
@@ -252,20 +251,22 @@ body {
    ============================================= */
 
    .carousel-section {
-    min-height: 100vh;
-    height: auto;
+    height: 100vh;
     background-color: var(--beige);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap:2rem;
-   }
+    gap: 2rem;
+    overflow-x: hidden; /* Añadir esto */
+    position: relative; /* Añadir esto */
+    width: 100%; /* Añadir esto */
+}
 
    .carousel-container {
     position: relative;
     width: 100%;
-    min-height: 80vh;
+    min-height: 90vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -388,7 +389,7 @@ body {
     background-color: var(--dark_green);
     display: flex;
     align-items: center;
-    overflow: hidden; 
+    overflow: hidden; /* Evitar que se muestre scroll horizontal */
 }
 
 .destinations {
@@ -528,7 +529,7 @@ body {
 }
 
 /* =============================================
-   9. CUSTOM CURSOR
+    CUSTOM CURSOR
 ============================================= */
 .custom-cursor {
     position: fixed;
