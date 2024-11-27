@@ -1,4 +1,25 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // Asegurarnos que GSAP y ScrollTrigger están registrados
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Estado inicial y animación de entrada del carousel
+    gsap.set('.carousel-container', {
+        opacity: 0,
+        y: '100vh',
+    });
+
+    gsap.to('.carousel-container', {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+            trigger: ".carousel-section",
+            start: "top center"
+        }
+    });
+
+    // Configuración del carousel
     const track = document.querySelector('.carousel-track');
     const cards = document.querySelectorAll(".card");
     const totalCards = cards.length;

@@ -1,5 +1,8 @@
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
+//====================
+//SECCIÓN ANIMACIÓN HORIZONTAL
+//====================
 const horizontalSection = gsap.timeline({
     scrollTrigger: {
         trigger: ".horizontal-scroll-section",
@@ -35,20 +38,16 @@ const horizontalSection = gsap.timeline({
             document.body.style.overflowX = "hidden";
         },
         onUpdate: (self) => {
-            if (self.progress > 0.8) {
-                const progress = (self.progress - 0.8) / 0.2;
-
+            if (self.progress >= 1) {
                 gsap.to('.carousel-container', {
-                    opacity: progress,
-                    y: `${(1 - progress) * 100}vh`,
+                    opacity: 1,
+                    y: 0,
                     duration: 1,
                     ease: "power2.inOut",
                     onComplete: () => {
-                        if (self.progress > 0.99) {
-                            gsap.set('.carousel-container', {
-                                clearProps: "all"
-                            });
-                        }
+                        gsap.set('.carousel-container', {
+                            clearProps: "all"
+                        });
                     }
                 });
             }
@@ -93,7 +92,7 @@ gsap.utils.toArray('.text-block').forEach((block, index, blocks) => {
         trigger: block,
         containerAnimation: horizontalSection,
         start: "left 65%",
-        end: "right 35%",
+        end: "right 45%",
         scrub: 1,
         onEnter: () => {
             gsap.to(textContent, {
@@ -154,48 +153,55 @@ gsap.utils.toArray('.text-block').forEach((block, index, blocks) => {
     });
 });
 
+//====================
+//ANIMACIÓN DEL HERO
+//====================
 function initHeroAnimation() {
-    try {
-        const heroElement = document.querySelector(".hero_title");
-        gsap.set(heroElement, { opacity: 0 });
+    const heroElement = document.querySelector(".hero_title");
+    
+    // Aseguramos que el elemento sea visible
+    gsap.set(heroElement, { opacity: 1 });
 
-        const title = new SplitText(".hero_title", {
-            type: "chars",
-            charsClass: "char"
-        });
+    // Dividimos en caracteres manteniendo la estructura
+    const title = new SplitText(".hero_title", {
+        type: "chars, words",
+        charsClass: "char",
+        wordsClass: "word",
+        position: "relative",
+        wordDelimiter: " ",
+        preserveSpaces: true
+    });
 
-        gsap.set(title.chars, {
-            opacity: 0,
-            y: 50,
-            rotationX: 30
-        });
+    // Aseguramos que las palabras se mantengan juntas
+    title.words.forEach(word => {
+        word.style.display = 'inline-block';
+        word.style.whiteSpace = 'nowrap';
+    });
 
-        gsap.to(heroElement, {
-            opacity: 1,
-            duration: 0.1,
-            onComplete: () => {
-                gsap.to(title.chars, {
-                    opacity: 1,
-                    y: 0,
-                    rotationX: 0,
-                    duration: 1,
-                    stagger: 0.03,
-                    ease: "back.out(1.7)"
-                });
-            }
-        });
-    } catch (error) {
-        console.error("Error en la animación:", error);
-    }
+    // Configuración inicial de los caracteres
+    gsap.set(title.chars, {
+        y: 100,
+        opacity: 0,
+        display: 'inline-block'
+    });
+
+    // Animación de los caracteres
+    gsap.to(title.chars, {
+        duration: 1.4,
+        y: 0,
+        opacity: 1,
+        stagger: 0.02,
+        ease: "power4.out",
+        delay: 0.2
+    });
 }
 
+// Aseguramos que la función esté disponible globalmente
 window.initHeroAnimation = initHeroAnimation;
 
-gsap.set('.carousel-container', {
-    opacity: 0,
-    y: '100vh',
-});
-
+//====================
+// ANIMACIÓN MENÚ
+//====================
 document.querySelector('.menu-trigger').addEventListener('click', function() {
     document.querySelector('.menu-wrap').classList.toggle('active');
 });
