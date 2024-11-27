@@ -204,3 +204,54 @@ html, body {
         font-size: 0.8rem;
     }
 }
+
+/* Diseño móvil para rutas */
+@media (max-width: 600px) {
+    .columns {
+        grid-template-columns: 1fr; /* Cambia a una columna */
+        max-width: 100%; /* Ancho completo */
+        margin: 2rem auto 0; /* Menos margen superior */
+        padding: 1rem;
+        gap: 1.5rem; /* Espacio entre items */
+    }
+
+    .column {
+        --column-offset: 0; /* Elimina el offset */
+        padding: 0;
+        gap: 1.5rem;
+        transform: none; /* Elimina transformaciones */
+        animation: none; /* Elimina animaciones */
+    }
+
+    .column-reverse {
+        flex-direction: column; /* Vuelve a dirección normal */
+        transform: none; /* Elimina transformaciones */
+        animation: none; /* Elimina animaciones */
+    }
+
+    .column_item {
+        margin: 0; /* Reset margins */
+        padding: 1rem;
+        transform: none !important; /* Fuerza eliminar transformaciones */
+        max-width: 100%; /* Ancho completo */
+        transition: transform 0.2s ease;
+    }
+
+    .column_item:hover {
+        transform: scale(0.98) !important; /* Solo un ligero efecto al tocar */
+    }
+
+    .column_item_img_wrapper {
+        aspect-ratio: 1.2; /* Proporción más cuadrada */
+    }
+
+    .column_item_title {
+        margin-top: 0.8rem;
+        font-size: 1.4rem; /* Tamaño fijo para móvil */
+    }
+
+    .column_item_description {
+        font-size: 1rem; /* Tamaño fijo para móvil */
+        margin-top: 0.5rem;
+    }
+}
