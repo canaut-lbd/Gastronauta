@@ -711,46 +711,31 @@ body {
     }
 }
 
-/* Diseño móvil para el carousel */
+/* =============================================
+   Ajustes para Carrusel y Scroll Vertical
+   ============================================= */
+
+
+/* Carrusel: Ajustes en pantallas pequeñas */
 @media screen and (max-width: 600px) {
-    .carousel-section {
-      display:flex;
-      flex-direction: column;   
-      gap:1rem;
-    }
-
-    .carousel-heading h2 {
-        font-size: 2rem;
-        padding: 0 1rem;
-        text-align: center;
-        margin-bottom: 1rem;
-    }
-
-    .carousel-container {
-        padding: 0.5rem;
-        min-height: auto;
-    }
-
     .carousel-track {
         display: flex;
         flex-direction: row;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory; /* Activar scroll por tarjetas */
         gap: 1rem;
-        position: static;
         padding: 0 1rem;
     }
 
     .card {
-        position: static;
-        width: 100%;
-        height: auto;
-        transform: none;
-        margin-bottom: 1rem;
+        flex: 0 0 80%; /* Tarjetas ocupan el 80% del ancho */
+        margin: 0 auto;
+        scroll-snap-align: center;
     }
 
     .card img {
-        height: 200px;
-        width: 100%;
-        object-fit: cover;
+        height: auto;
+        max-height: 250px;
     }
 
     .card-text {
@@ -759,21 +744,32 @@ body {
 
     .card-text h3 {
         font-size: 1.3rem;
-        margin-bottom: 0.3rem;
+        margin-bottom: 0.3rem; 
     }
 
     .card-text p {
         font-size: 0.9rem;
     }
-
-    .carousel-button {
-        margin-top: 1rem;
-        padding: 0 1rem;
-    }
-
-    .btn-primary {
-        width: 100%;
-        padding: 0.8rem;
-    }
 }
 
+/* Ajustes generales para dispositivos pequeños */
+@media screen and (max-width: 768px) {
+    .hero_title {
+        font-size: 2.5rem;
+        line-height: 1.2;
+        text-align: center;
+        margin: 0 1rem;
+    }
+
+    .step-image {
+        max-width: 90%;
+    }
+
+    .scroll-text {
+        font-size: 1.8rem;
+    }
+
+    .scroll-description {
+        font-size: 1rem;
+    }
+}
