@@ -717,39 +717,69 @@ body {
 
 /* Ajuste del carrusel para pantallas pequeñas */
 @media screen and (max-width: 600px) {
+
+    .carousel-section {
+        min-height: auto;
+        padding: 2rem 0;
+        overflow-x: hidden;
+    }
+
+    .carousel-heading h2 {
+        font-size: 2rem;
+        padding: 0 1rem;
+        text-align: center;
+    }
+
     .carousel-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        overflow: hidden;
-        padding: 0 1rem; /* Espaciado interno */
+        padding: 1rem;
+        min-height: auto;
     }
 
     .carousel-track {
         display: flex;
-        flex-direction: row;
-        gap: 1rem;
-        width: 100%;
-        overflow-x: auto; /* Scroll horizontal */
-        scroll-snap-type: x mandatory; /* Snap al deslizar */
-        -webkit-overflow-scrolling: touch; /* Suavidad en mobile */
+
+        flex-direction: column;
+        gap: 1.5rem;
+        position: static;
+        padding: 0 1rem;
     }
 
     .card {
-        flex: 0 0 80%; /* Cada tarjeta ocupa el 80% del ancho */
-        max-width: 80%;
-        scroll-snap-align: center; /* Centrado automático */
+        position: static; /* Quitar posición absoluta */
+        width: 100%;
+        height: auto;
+        transform: none !important; /* Eliminar todas las transformaciones */
+        margin-bottom: 1.5rem;
+    }
+
+    .card img {
+        height: 250px; /* Altura fija para las imágenes */
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .card-text {
+        padding: 1rem 0;
+    }
+
+    .card-text h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .card-text p {
+        font-size: 1rem;
     }
 
     .carousel-button {
-        display: none; /* Ocultamos el botón de "Ver todas las rutas" */
+        margin-top: 2rem;
+        padding: 0 1rem;
     }
 
     .card img {
         width: 100%;
-        height: auto;
-        object-fit: cover;
+
+        padding: 1rem;
     }
 }
 
