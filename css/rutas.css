@@ -1,3 +1,6 @@
+/* =============================================
+   1. VARIABLES GLOBALES Y RESET
+   ============================================= */
 :root {
     --beige: #F1EFEB;
     --dark_green: #3C3812;
@@ -13,7 +16,9 @@ html, body {
     margin: 0;
     padding: 0;
 }
-
+/* =============================================
+   2. ESTILOS DE LA GALERÍA/GRID
+   ============================================= */
 .columns {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -102,12 +107,10 @@ html, body {
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Efecto hover */
 .column_item:hover {
     transform: translateY(calc(var(--index, 1) * 1.5rem)) scale(0.95);
 }
 
-/* Nuevo efecto active que se combina con el hover */
 .column_item:active {
     transform: translateY(calc(var(--index, 1) * 1.5rem)) scale(0.92);
     opacity: 0.9;
@@ -118,18 +121,18 @@ html, body {
     filter: brightness(0.95);
 }
 
-/* Eliminar el efecto de zoom anterior si existe */
 .column_item:hover .column_item_img_wrapper img {
     transform: scale(1);
 }
 
+/* ANIMACIÓN PARA VOLVER ARRIBA */
 @keyframes adjust-position {
-	/* Start position: shift entire column up, but not so that it goes out of view */
+	
 	from {
 		transform: translateY(calc(-100% + 100vh));
 	}
 
-	/* End position: shift entire column down, but not so that it goes out of view */
+
 	to {
 		transform: translateY(calc(100% - 100vh));
 	}
@@ -140,12 +143,6 @@ html, body {
     color: inherit;
     display: block;
 }
-
-/* Asegurarnos de que los efectos existentes siguen funcionando
-.column_item_link:hover .column_item,
-.column_item_link:active .column_item {
-} */
-
 
 .column_item_title {
     margin: 0;
@@ -165,50 +162,6 @@ html, body {
     font-family: 'NeueMontreal', sans-serif;
     font-weight: 300;
     opacity: 0.8;
-}
-
-.scroll-top {
-    position: fixed;
-    bottom: 3rem;
-    right: 3rem;
-    background-color: var(--dark_green);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 80px;
-    height: 80px;
-    cursor: none;
-    z-index: 9998;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-}
-
-/* Efecto hover */
-.scroll-top:hover {
-    background-color: var(--orange);
-}
-
-.scroll-top span {
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    z-index: 9999;
-}
-
-/* Media query para móviles */
-@media (max-width: 768px) {
-    .scroll-top {
-        width: 60px;
-        height: 60px;
-        bottom: 1rem;
-        right: 1rem;
-    }
-    
-    .scroll-top span {
-        font-size: 0.8rem;
-    }
 }
 
 .column_img {
@@ -237,3 +190,63 @@ html, body {
     transform: translateY(100%);
     transition: all 0.8s cubic-bezier(0.2, 1, 0.3, 1);
 }
+
+
+/* ESTILOS DEL "VOLVER ARRIBA */
+
+.scroll-top {
+    position: fixed;
+    bottom: 3rem;
+    right: 3rem;
+    background-color: var(--dark_green);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    cursor: none;
+    z-index: 9998;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.scroll-top:hover {
+    background-color: var(--orange);
+}
+
+.scroll-top span {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 9999;
+}
+
+/* ANIMACIÓN PARA VOLVER ARRIBA */
+@keyframes adjust-position {
+	
+	from {
+		transform: translateY(calc(-100% + 100vh));
+	}
+
+
+	to {
+		transform: translateY(calc(100% - 100vh));
+	}
+}
+
+/* Media query para móviles */
+@media (max-width: 768px) {
+    .scroll-top {
+        width: 60px;
+        height: 60px;
+        bottom: 1rem;
+        right: 1rem;
+    }
+    
+    .scroll-top span {
+        font-size: 0.8rem;
+    }
+}
+
