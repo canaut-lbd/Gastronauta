@@ -326,19 +326,31 @@ function updateCursorText() {
     }
 }
 
-document.addEventListener('mousemove', (e) => {
-    const cursor = document.querySelector('.custom-cursor');
-    cursor.style.opacity = 1;
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-    updateCursorText();
+// Función para manejar el cursor solo en desktop
+function initCustomCursor() {
+    if (window.innerWidth > 600) {
+        document.addEventListener('mousemove', (e) => {
+            const cursor = document.querySelector('.custom-cursor');
+            if (cursor) {
+                cursor.style.opacity = 1;
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+                updateCursorText();
+            }
+        });
+
+        // Actualizar el texto en scroll solo en desktop
+        window.addEventListener('scroll', updateCursorText);
+    }
+}
+
+// Inicializar solo en desktop
+document.addEventListener('DOMContentLoaded', () => {
+    if (window.innerWidth > 600) {
+        initCustomCursor();
+        updateCursorText();
+    }
 });
-
-// Actualizar el texto en scroll
-window.addEventListener('scroll', updateCursorText);
-
-// Llamar a updateCursorText cuando la página carga
-document.addEventListener('DOMContentLoaded', updateCursorText);
 
 // Añadir esta nueva funcionalidad para la galería del entorno
 document.addEventListener('DOMContentLoaded', function() {

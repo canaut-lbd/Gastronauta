@@ -806,3 +806,10 @@ body {
         font-size: 1rem;
     }
 }
+
+/* Ocultar cursor personalizado en móvil */
+@media screen and (max-width: 600px) {
+    .custom-cursor {
+        display: none;
+    }
+}

@@ -196,7 +196,6 @@ function initHeroAnimation() {
     });
 }
 
-// Aseguramos que la función esté disponible globalmente
 window.initHeroAnimation = initHeroAnimation;
 
 //====================
