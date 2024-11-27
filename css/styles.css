@@ -715,42 +715,44 @@ body {
    Ajustes para Carrusel y Scroll Vertical
    ============================================= */
 
+   @media screen and (max-width: 600px) {
+    .carousel-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        overflow: hidden; /* Ocultar scroll interno */
+    }
 
-/* Carrusel: Ajustes en pantallas pequeñas */
-@media screen and (max-width: 600px) {
     .carousel-track {
         display: flex;
         flex-direction: row;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory; /* Activar scroll por tarjetas */
+        width: 100%;
+        overflow-x: auto; /* Scroll horizontal */
+        scroll-snap-type: x mandatory; /* Comportamiento snap */
         gap: 1rem;
-        padding: 0 1rem;
+        padding: 1rem;
     }
 
     .card {
-        flex: 0 0 80%; /* Tarjetas ocupan el 80% del ancho */
+        flex: 0 0 80%; /* Las tarjetas ocupan el 80% del ancho */
+        max-width: 80%;
+        height: auto;
+        scroll-snap-align: center; /* Centrar las tarjetas al hacer scroll */
         margin: 0 auto;
-        scroll-snap-align: center;
     }
 
     .card img {
+        width: 100%;
         height: auto;
-        max-height: 250px;
+        object-fit: cover;
     }
 
-    .card-text {
-        padding: 0.5rem 0;
-    }
-
-    .card-text h3 {
-        font-size: 1.3rem;
-        margin-bottom: 0.3rem; 
-    }
-
-    .card-text p {
-        font-size: 0.9rem;
+    .carousel-button {
+        display: none; /* Ocultar el botón de "Ver más" en mobile */
     }
 }
+
 
 /* Ajustes generales para dispositivos pequeños */
 @media screen and (max-width: 768px) {
