@@ -101,7 +101,7 @@ h2 {
     text-align: center;
     font-family: "NeueWorld", serif;
     font-weight: 100;
-    font-size: clamp(5rem, 10vw, 12rem);
+    font-size: clamp(5rem, 8vw, 10rem);
     line-height: 1.2;
     color: var(--beige);
     overflow: hidden;
