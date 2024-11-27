@@ -715,31 +715,35 @@ body {
    Ajustes para Carrusel y Scroll Vertical
    ============================================= */
 
-   @media screen and (max-width: 600px) {
+/* Ajuste del carrusel para pantallas pequeñas */
+@media screen and (max-width: 600px) {
     .carousel-container {
         display: flex;
         flex-direction: column;
         align-items: center;
         width: 100%;
-        overflow: hidden; /* Ocultar scroll interno */
+        overflow: hidden;
+        padding: 0 1rem; /* Espaciado interno */
     }
 
     .carousel-track {
         display: flex;
         flex-direction: row;
+        gap: 1rem;
         width: 100%;
         overflow-x: auto; /* Scroll horizontal */
-        scroll-snap-type: x mandatory; /* Comportamiento snap */
-        gap: 1rem;
-        padding: 1rem;
+        scroll-snap-type: x mandatory; /* Snap al deslizar */
+        -webkit-overflow-scrolling: touch; /* Suavidad en mobile */
     }
 
     .card {
-        flex: 0 0 80%; /* Las tarjetas ocupan el 80% del ancho */
+        flex: 0 0 80%; /* Cada tarjeta ocupa el 80% del ancho */
         max-width: 80%;
-        height: auto;
-        scroll-snap-align: center; /* Centrar las tarjetas al hacer scroll */
-        margin: 0 auto;
+        scroll-snap-align: center; /* Centrado automático */
+    }
+
+    .carousel-button {
+        display: none; /* Ocultamos el botón de "Ver todas las rutas" */
     }
 
     .card img {
@@ -747,11 +751,8 @@ body {
         height: auto;
         object-fit: cover;
     }
-
-    .carousel-button {
-        display: none; /* Ocultar el botón de "Ver más" en mobile */
-    }
 }
+
 
 
 /* Ajustes generales para dispositivos pequeños */

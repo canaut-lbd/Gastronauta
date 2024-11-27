@@ -1,152 +1,201 @@
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
-// Animación de scroll horizontal
-const horizontalSection = gsap.timeline({
-    scrollTrigger: {
-        trigger: ".horizontal-scroll-section",
-        start: "top top",
-        end: () => `+=${document.querySelector(".animation-wrap").offsetWidth}`,
-        pin: true,
-        scrub: 1.5,
-        invalidateOnRefresh: true,
-        onEnter: () => {
-            document.body.style.overflowX = "auto";
+// Detectar si es mobile
+const isMobile = window.innerWidth <= 600;
 
-            // Activar primer bloque
-            const firstBlock = document.querySelector('.text-block');
-            const firstContentWrapper = firstBlock.querySelector('.content-wrapper');
-            gsap.to(firstContentWrapper, {
-                opacity: 1,
-                y: 0,
-                duration: 0.8,
-                ease: "power2.out"
-            });
-        },
-        onLeave: () => {
-            document.body.style.overflowX = "hidden";
-        },
-        onLeaveBack: () => {
-            document.body.style.overflowX = "hidden";
-        },
-        onUpdate: (self) => {
-            if (self.progress > 0.8) {
-                const progress = (self.progress - 0.8) / 0.2;
+if (isMobile) {
+    // Slider en Mobile
+    const carouselTrack = document.querySelector('.carousel-track');
 
-                gsap.to('.carousel-container', {
-                    opacity: progress,
-                    y: `${(1 - progress) * 100}vh`,
-                    duration: 1,
-                    ease: "power2.inOut",
-                    onComplete: () => {
-                        if (self.progress > 0.99) {
-                            gsap.set('.carousel-container', {
-                                clearProps: "all"
-                            });
-                        }
-                    }
-                });
-            }
-        }
-    }
-});
+    let isDragging = false;
+    let startX, scrollLeft;
 
-horizontalSection.to(".animation-wrap", {
-    x: () => -(document.querySelector(".animation-wrap").offsetWidth - window.innerWidth),
-    ease: "none"
-});
-
-gsap.utils.toArray('.text-block').forEach((block, index, blocks) => {
-    const contentWrapper = block.querySelector('.content-wrapper');
-    const arrow = block.querySelector('.path-arrow path');
-    const nextBlock = blocks[index + 1];
-
-    const textContent = contentWrapper.querySelector('.text-content');
-    const image = contentWrapper.querySelector('.step-image');
-
-    gsap.set(textContent, {
-        opacity: 0,
-        x: -30
+    carouselTrack.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        startX = e.pageX - carouselTrack.offsetLeft;
+        scrollLeft = carouselTrack.scrollLeft;
+        carouselTrack.style.cursor = 'grabbing';
     });
 
-    gsap.set(image, {
-        opacity: 0,
-        x: 30,
-        scale: 0.95
+    carouselTrack.addEventListener('mouseleave', () => {
+        isDragging = false;
+        carouselTrack.style.cursor = 'default';
     });
 
-    if (arrow) {
-        const pathLength = arrow.getTotalLength();
-        gsap.set(arrow, {
-            strokeDasharray: pathLength,
-            strokeDashoffset: pathLength,
-            opacity: 0
-        });
-    }
+    carouselTrack.addEventListener('mouseup', () => {
+        isDragging = false;
+        carouselTrack.style.cursor = 'default';
+    });
 
-    ScrollTrigger.create({
-        trigger: block,
-        containerAnimation: horizontalSection,
-        start: "left 65%",
-        end: "right 35%",
-        scrub: 1,
-        onEnter: () => {
-            gsap.to(textContent, {
-                opacity: 1,
-                x: 0,
-                duration: 0.8,
-                ease: "power2.out"
-            });
+    carouselTrack.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+        const x = e.pageX - carouselTrack.offsetLeft;
+        const walk = (x - startX) * 2;
+        carouselTrack.scrollLeft = scrollLeft - walk;
+    });
 
-            gsap.to(image, {
-                opacity: 1,
-                x: 0,
-                scale: 1,
-                duration: 0.8,
-                ease: "back.out(1.2)"
-            });
+    // Soporte para dispositivos táctiles (touch)
+    carouselTrack.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].pageX - carouselTrack.offsetLeft;
+        scrollLeft = carouselTrack.scrollLeft;
+    });
 
-            contentWrapper.classList.add('active');
-        },
-        onUpdate: (self) => {
-            if (arrow) {
-                const progress = self.progress;
+    carouselTrack.addEventListener('touchmove', (e) => {
+        const x = e.touches[0].pageX - carouselTrack.offsetLeft;
+        const walk = (x - startX) * 2;
+        carouselTrack.scrollLeft = scrollLeft - walk;
+    });
 
-                gsap.to(arrow, {
-                    strokeDashoffset: arrow.getTotalLength() * (1 - progress),
-                    opacity: progress,
-                    duration: 0.3,
-                    ease: "none"
+} else {
+    // Animación de scroll horizontal
+    const horizontalSection = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".horizontal-scroll-section",
+            start: "top top",
+            end: () => `+=${document.querySelector(".animation-wrap").offsetWidth}`,
+            pin: true,
+            scrub: 1.5,
+            invalidateOnRefresh: true,
+            onEnter: () => {
+                document.body.style.overflowX = "auto";
+
+                // Activar primer bloque
+                const firstBlock = document.querySelector('.text-block');
+                const firstContentWrapper = firstBlock.querySelector('.content-wrapper');
+                gsap.to(firstContentWrapper, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: "power2.out"
                 });
+            },
+            onLeave: () => {
+                document.body.style.overflowX = "hidden";
+            },
+            onLeaveBack: () => {
+                document.body.style.overflowX = "hidden";
+            },
+            onUpdate: (self) => {
+                if (self.progress > 0.8) {
+                    const progress = (self.progress - 0.8) / 0.2;
 
-                if (progress > 0.6 && nextBlock) {
-                    const nextText = nextBlock.querySelector('.text-content');
-                    const nextImage = nextBlock.querySelector('.step-image');
-
-                    gsap.fromTo(nextText, 
-                        { opacity: 0, x: -30 },
-                        {
-                            opacity: 1,
-                            x: 0,
-                            duration: 0.8,
-                            ease: "power2.out"
+                    gsap.to('.carousel-container', {
+                        opacity: progress,
+                        y: `${(1 - progress) * 100}vh`,
+                        duration: 1,
+                        ease: "power2.inOut",
+                        onComplete: () => {
+                            if (self.progress > 0.99) {
+                                gsap.set('.carousel-container', {
+                                    clearProps: "all"
+                                });
+                            }
                         }
-                    );
-
-                    gsap.fromTo(nextImage,
-                        { opacity: 0, x: 30, scale: 0.95 },
-                        {
-                            opacity: 1,
-                            x: 0,
-                            scale: 1,
-                            duration: 0.8,
-                            ease: "back.out(1.2)"
-                        }
-                    );
+                    });
                 }
             }
         }
     });
-});
+
+    horizontalSection.to(".animation-wrap", {
+        x: () => -(document.querySelector(".animation-wrap").offsetWidth - window.innerWidth),
+        ease: "none"
+    });
+
+    gsap.utils.toArray('.text-block').forEach((block, index, blocks) => {
+        const contentWrapper = block.querySelector('.content-wrapper');
+        const arrow = block.querySelector('.path-arrow path');
+        const nextBlock = blocks[index + 1];
+
+        const textContent = contentWrapper.querySelector('.text-content');
+        const image = contentWrapper.querySelector('.step-image');
+
+        gsap.set(textContent, {
+            opacity: 0,
+            x: -30
+        });
+
+        gsap.set(image, {
+            opacity: 0,
+            x: 30,
+            scale: 0.95
+        });
+
+        if (arrow) {
+            const pathLength = arrow.getTotalLength();
+            gsap.set(arrow, {
+                strokeDasharray: pathLength,
+                strokeDashoffset: pathLength,
+                opacity: 0
+            });
+        }
+
+        ScrollTrigger.create({
+            trigger: block,
+            containerAnimation: horizontalSection,
+            start: "left 65%",
+            end: "right 35%",
+            scrub: 1,
+            onEnter: () => {
+                gsap.to(textContent, {
+                    opacity: 1,
+                    x: 0,
+                    duration: 0.8,
+                    ease: "power2.out"
+                });
+
+                gsap.to(image, {
+                    opacity: 1,
+                    x: 0,
+                    scale: 1,
+                    duration: 0.8,
+                    ease: "back.out(1.2)"
+                });
+
+                contentWrapper.classList.add('active');
+            },
+            onUpdate: (self) => {
+                if (arrow) {
+                    const progress = self.progress;
+
+                    gsap.to(arrow, {
+                        strokeDashoffset: arrow.getTotalLength() * (1 - progress),
+                        opacity: progress,
+                        duration: 0.3,
+                        ease: "none"
+                    });
+
+                    if (progress > 0.6 && nextBlock) {
+                        const nextText = nextBlock.querySelector('.text-content');
+                        const nextImage = nextBlock.querySelector('.step-image');
+
+                        gsap.fromTo(nextText, 
+                            { opacity: 0, x: -30 },
+                            {
+                                opacity: 1,
+                                x: 0,
+                                duration: 0.8,
+                                ease: "power2.out"
+                            }
+                        );
+
+                        gsap.fromTo(nextImage,
+                            { opacity: 0, x: 30, scale: 0.95 },
+                            {
+                                opacity: 1,
+                                x: 0,
+                                scale: 1,
+                                duration: 0.8,
+                                ease: "back.out(1.2)"
+                            }
+                        );
+                    }
+                }
+            }
+        });
+    });
+}
 
 // Animación del Hero
 function initHeroAnimation() {
@@ -194,44 +243,3 @@ gsap.set('.carousel-container', {
 document.querySelector('.menu-trigger').addEventListener('click', function() {
     document.querySelector('.menu-wrap').classList.toggle('active');
 });
-
-// Slider en Mobile
-if (window.innerWidth <= 600) {
-    const carouselTrack = document.querySelector(".carousel-track");
-
-    let isDown = false;
-    let startX, scrollLeft;
-
-    carouselTrack.addEventListener("mousedown", (e) => {
-        isDown = true;
-        startX = e.pageX - carouselTrack.offsetLeft;
-        scrollLeft = carouselTrack.scrollLeft;
-    });
-
-    carouselTrack.addEventListener("mouseleave", () => {
-        isDown = false;
-    });
-
-    carouselTrack.addEventListener("mouseup", () => {
-        isDown = false;
-    });
-
-    carouselTrack.addEventListener("mousemove", (e) => {
-        if (!isDown) return;
-        const x = e.pageX - carouselTrack.offsetLeft;
-        const walk = (x - startX) * 2; // Control de velocidad
-        carouselTrack.scrollLeft = scrollLeft - walk;
-    });
-
-    // Soporte para dispositivos táctiles
-    carouselTrack.addEventListener("touchstart", (e) => {
-        startX = e.touches[0].pageX - carouselTrack.offsetLeft;
-        scrollLeft = carouselTrack.scrollLeft;
-    });
-
-    carouselTrack.addEventListener("touchmove", (e) => {
-        const x = e.touches[0].pageX - carouselTrack.offsetLeft;
-        const walk = (x - startX) * 2;
-        carouselTrack.scrollLeft = scrollLeft - walk;
-    });
-}
