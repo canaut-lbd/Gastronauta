@@ -23,6 +23,7 @@ body {
     background-color: var(--beige);
     font-family: 'NeueWorld', serif;
     background: transparent;
+    overflow-x: hidden;
 }
 
 /* =============================================
@@ -258,17 +259,13 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 2rem;
-    overflow-x: hidden;
-    position: relative;
-    width: 100%;
-    padding: 2rem 0;
-}
+    gap:2rem;
+   }
 
-.carousel-container {
+   .carousel-container {
     position: relative;
     width: 100%;
-    min-height: 60vh;
+    min-height: 80vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -586,12 +583,6 @@ body {
         width: 250px;
         height: 350px;
     }
-
-    .carousel-section,
-    .carousel-container,
-    .carousel-track {
-        overflow-x: hidden;
-    }
 }
 
 /* Media Queries para móviles */
@@ -680,20 +671,6 @@ body {
     .newsletter h4 {
         font-size: 1.5rem;
     }
-
-    .carousel-section {
-        overflow-x: hidden;
-        touch-action: pan-y pinch-zoom;
-        padding: 2rem 0;
-        min-height: 105vh;
-    }
-    
-    .carousel-container,
-    .carousel-track {
-        overflow-x: hidden;
-        width: 100vw;
-        min-height: 85vh;
-    }
 }
 
 /* Media Queries para móviles pequeños */
@@ -726,13 +703,6 @@ body {
 
     .path-arrow {
         transform: scale(0.5);
-    }
-
-    .carousel-section,
-    .carousel-container,
-    .carousel-track {
-        overflow-x: hidden;
-        touch-action: pan-y pinch-zoom;
     }
 }
 
