@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruta por España</title>
+    <link rel="stylesheet" href="css/detalle.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/transitions.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+</head>
+<body>
+    <a href="rutas.html" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+        <span>Volver a rutas</span>
+    </a>
+    <div class="custom-cursor">
+        <span>scroll</span>
+    </div>
+    <div class="hero-section">
+        <div class="hero-image-container">
+            <div class="image-overlay"></div>
+            <div class="hero-content">
+                <h1 class="split-text">El cuartel del mar</h1>
+                <p class="split-text">Sabores y olas: El arte de La Barrosa desde un cuartel con historia</p>
+                <button class="share-button" aria-label="Compartir ruta">
+                    <i class="fas fa-share-alt"></i>
+                    <span>Compartir ruta</span>
+                </button>
+            </div>
+            <img src="imgs/Cadiz/cuarteldelmar-2.jpg" class="hero-image" alt="Hero Image">
+        </div>
+        <div class="content-container">
+<!-- Sección La Ficha -->
+            <div class="sections-wrapper">
+                <section class="content-section">
+                    <h2 class="content_h2 split-animate">La ficha</h2>
+                    <p class="section-intro split-animate">Enclavado frente a la playa de la barrosa, este antiguo cuartel de la Guardia Civil es un deleite para los sentidos. El sitio es sencillamente espectacular, tanto por dentro como por fuera y las vistas son inmejorables.</p>
+                    <div class="restaurant-info-card">
+                        <div class="info-item">
+                            <span class="info-label">
+                                <i class="fas fa-euro-sign"></i>
+                                Precio medio
+                            </span>
+                            <span class="info-value">35-50€/persona</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">
+                                <i class="fas fa-map-marker-alt"></i>
+                                Ubicación
+                            </span>
+                            <span class="info-value">Chiclana, Cádiz, España</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">
+                                <i class="fas fa-utensils"></i>
+                                Tipo de cocina
+                            </span>
+                            <span class="info-value">Contemporánea, local</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">
+                                <i class="fas fa-award"></i>
+                                Reconocimientos
+                            </span>
+                            <span class="info-value">Ark Design Awards</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">
+                                <i class="fas fa-award"></i>
+                                Mejor época para visitar
+                            </span>
+                            <span class="info-value">Primavera/Verano</span>
+                        </div>
+                    </div>
+                </section>
+<!-- Sección de Historia -->
+                <section class="content-section">
+                    <h2 class="content_h2 split-animate">La historia</h2>
+                    <p class="section-intro split-animate">El rótulo "Todo por la Patria" se puede leer aún en las paredes de este restaurante. No resulta difícil adivinar que este edificio de piedra situado en Loma del Puerco (Chiclana) fue un cuartel de la Guardia Civil. La casa cuartel se mantuvo activa hasta finales de la década de los 70. En ella residían guardias civiles con sus familias, no en unas condiciones precisamente buenas.</p>
+                    
+                    <figure class="image-figure">
+                        <div class="image-comparison">
+                            <img src="imgs/Cadiz/cuarteldelmar_antiguo.jpg" alt="Antes" class="image-before">
+                            <img src="imgs/Cadiz/cuarteldelmar_nuevo.webp" alt="Después" class="image-after">
+                            <div class="slider-handle">
+                                <div class="slider-line"></div>
+                                <div class="slider-button">
+                                    <i class="fas fa-arrows-left-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <figcaption>Antes y después de la transformación del Cuartel del Mar</figcaption>
+                    </figure>
+                    <div class="text-block">
+                        <p class="lead-paragraph">El Cuartel del Mar nace de la transformación de un antiguo cuartel de la Guardia Civil en un espacio gastronómico único.</p>
+                        <p>Situado en primera línea de la playa de La Barrosa, este edificio histórico ha sido testigo de décadas de historia local antes de su renovación en 2021.</p>
+                    </div>
+                </section>
+<!-- Sección de Comida -->
+                <section class="content-section">
+                    <h2 class="content_h2 split-animate">La comida</h2>
+                    <p class="section-intro split-animate">La propuesta gastronómica del Cuartel del Mar fusiona la tradición marinera de Cádiz con técnicas contemporáneas. Cada plato es una cuidada selección de productos locales, donde el pescado y el marisco fresco de la bahía son los protagonistas. La carta evoluciona con las temporadas, respetando siempre el producto de proximidad y los sabores auténticos de la tierra.</p>
+                    
+                    <div class="swiper food-carousel">
+                        <div class="swiper-wrapper">
+                            <!-- Slide 1 -->
+                            <div class="swiper-slide">
+                                <div class="food-card">
+                                    <h3 class="food-title">Steak tartar de lomo madurado y hueso de tuétano asados</h3>
+                                    <div class="video-wrapper">
+                                        <video class="food-video" autoplay muted loop playsinline>
+                                            <source src="videos/Cadiz/steak_tartar.mp4" type="video/mp4">
+                                            Tu navegador no soporta el elemento video.
+                                        </video>
+                                    </div>
+                                    <p class="food-description">Este plato es una absoluta delicia. La combinación de sabores y texturas es inmejorable. El aderezo del steak tartar casaba a la perfección con el toque asado del tuétano. Para mí, uno de los mejores que he probado. Si te gusta la carne, no dejaría de probarlo. </p>
+                                </div>
+                            </div>
+                            <!-- Slide 2 -->
+                            <div class="swiper-slide">
+                                <div class="food-card">
+                                    <h3 class="food-title">Tataki de atún</h3>
+                                    <img src="imgs/Cadiz/tataki.jpg" alt="Tataki de atún">
+                                    <p class="food-description">Espectacular es quedarse corto. El Tataki de Atún fue una explosión de frescura y sabor. El atún, marcado justo en su punto, estaba tan jugoso que casi parecía deshacerse en la boca. La mezcla de soja, cítricos y sésamo le daba ese toque especial que te transporta al mar con cada bocado. Todo ello, con vistas a la playa de La Barrosa, hizo de este plato una experiencia inolvidable. Si vienes al Cuartel del Mar, este es imprescindible.</p>
+                                </div>
+                            </div>
+                            <!-- Slide 3 -->
+                            <div class="swiper-slide">
+                                <div class="food-card">
+                                    <h3 class="food-title">Salmorejo a la gaditana con tosta de anchoa</h3>
+                                    <img src="imgs/Cadiz/salmorejo.webp" alt="Salmorejo">
+                                    <p class="food-description">Soy amante del salmorejo y este es, sin duda, uno de los mejores que he probado. El Salmorejo con Tosta de Anchoa tenía una textura suave y un sabor increíblemente auténtico, pero lo que realmente me conquistó fue la tosta. Las anchoas eran de una calidad excepcional, con ese toque justo de sal que combinaba perfectamente con el salmorejo. Es un plato fresco y lleno de sabor que define lo que es comer en la costa de Cádiz.</p>
+                                </div>
+                            </div>
+                            <!-- Slide 4 -->
+                            <div class="swiper-slide">
+                                <div class="food-card">
+                                    <h3 class="food-title">Huevo frito con caribero</h3>
+                                    <img src="imgs/Cadiz/huevo_carabinero.webp" alt="Huevo con carabinero">
+                                    <p class="food-description">¡Vaya descubrimiento! Pedí el Huevo Frito con Carabinero por curiosidad, y no puedo describir cuánto me sorprendió. El huevo, con su yema cremosa, se mezclaba a la perfección con el sabor intenso del carabinero. Además, el toque crujiente del plato lo hacía irresistible. Es de esos platos que parecen simples, pero esconden una profundidad de sabor increíble. Sin duda, volvería a pedirlo una y otra vez</p>
+                                </div>
+                            </div>
+                            <!-- Slide 5 -->
+                            <div class="swiper-slide">
+                                <div class="food-card">
+                                    <h3 class="food-title">Tarta de queso</h3>
+                                    <img src="imgs/Cadiz/tartaqueso.avif" alt="Tarta de queso">
+                                    <p class="food-description">La Tarta de Queso es simplemente una maravilla. No sabía que algo tan aparentemente sencillo podía ser tan delicioso. La textura era cremosa, casi como una caricia en el paladar, y el equilibrio de sabores entre el queso y el ligero dulzor era perfecto. Acompañada por un toque de frutos rojos, fue el final perfecto para una comida frente al mar. Si eres amante del queso, esta tarta es un sueño hecho realidad.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </section>
+<!-- Sección de Entorno -->
+                <section class="content-section">
+                    <h2 class="content_h2 split-animate">El Entorno</h2>
+                    <p class="section-intro split-animate">
+                        El Cuartel del Mar se encuentra en un enclave privilegiado de la costa gaditana, donde el mar y la historia se funden en un abrazo eterno. Sus alrededores ofrecen un paisaje único que complementa la experiencia gastronómica.
+                    </p>
+                    
+                    <div class="environment-content">
+                        <div class="environment-gallery">
+                            <div class="gallery-main">
+                                <img src="imgs/Cadiz/vistas.jpg" alt="Vistas al desde la terraza baja" class="main-image">
+                            </div>
+                            <div class="gallery-grid">
+                                <img src="imgs/Cadiz/terraza.jpg" alt="Mesa en el rooftop" class="gallery-thumbnail" >
+                                <img src="imgs/Cadiz/rooftop.jpg" alt="Rooftop con vistas al mar" class="gallery-thumbnail">
+                                <img src="imgs/Cadiz/entrada.jpg" alt="Entrada al restaurante" class="gallery-thumbnail">
+                            </div>
+                        </div>
+
+                        <div class="two-column-layout">
+                            <div class="column-left">
+                                <h3 class="highlight-title">Un lugar único</h3>
+                            </div>
+                            <div class="column-right">
+                                <p>
+                                    Situado junto al histórico Castillo de Santa Catalina, el restaurante ofrece vistas panorámicas al océano Atlántico y a la bahía de Cádiz. La terraza permite disfrutar de espectaculares atardeceres mientras la brisa marina acaricia suavemente a los comensales.
+                                </p>
+                                <p>
+                                    Los alrededores del restaurante invitan a pasear por el paseo marítimo de La Caleta, visitar las fortificaciones históricas o simplemente contemplar el ir y venir de las barcas pesqueras que mantienen viva la tradición marinera de la zona.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <script src="gsap/gsap.js"></script>
+    <script src="gsap/ScrollTrigger.js"></script>
+    <script src="gsap/SplitText.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.27/bundled/lenis.min.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="js/detalle.js"></script>
+    <div class="transition-overlay"></div>
+</body>
+</html>

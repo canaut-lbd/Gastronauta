@@ -1,0 +1,239 @@
+:root {
+    --beige: #F1EFEB;
+    --dark_green: #3C3812;
+    --orange: #FAC27D;
+    --pink: #F0B3C5;
+    --blue: #A0D8F2;
+    --green: #928D51;
+    --cursor: #3C381280;
+}
+
+html, body {
+    background-color: var(--beige);
+    margin: 0;
+    padding: 0;
+}
+
+.columns {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100vw;
+    max-width: 70vw;
+    margin: 0 auto;
+    position: relative;
+    background-color: var(--beige);
+    padding: clamp(1rem, 2vw, 2rem);
+    gap: clamp(1rem, 2vw, 2rem);
+    overflow-y: hidden;
+    margin-top: 6rem;
+}
+
+/* Ajustes para tablets */
+@media (max-width: 1200px) {
+    .columns {
+        max-width: 85vw;
+        gap: 1rem;
+        padding: clamp(0.8rem, 1.5vw, 1.5rem);
+    }
+}
+
+/* Ajustes para pantallas más pequeñas */
+@media (max-width: 900px) {
+    .columns {
+        max-width: 95vw;
+        gap: 0.75rem;
+        padding: clamp(0.5rem, 1vw, 1rem);
+    }
+}
+
+.column_text {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.column{
+    --column-offset: 10vh;
+    display: flex;
+    flex-direction: column;
+    padding: var(--column-offset) 0;
+    gap: 0.75rem;
+}
+
+.column-reverse {
+    flex-direction: column-reverse;
+    transform: translateY(calc(-100% + 100vh));
+    animation: adjust-position linear forwards;
+	animation-timeline: scroll(root block);
+}
+
+.column_item {
+    margin: 0;
+    padding: 1.5rem;
+    border-radius: 12px;
+    z-index: var(--z-index, 1);
+    margin-top: calc(var(--index,1) * -0.5em);
+    transform: translateY(calc(var(--index, 1) * 1.5rem));
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    transform-origin: center;
+}
+
+.column_item_img_wrapper {
+    border-radius: 1em;
+    width: 100%;
+    aspect-ratio: 0.75;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.column_item_img_wrapper img {
+    border-radius: inherit;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Efecto hover */
+.column_item:hover {
+    transform: translateY(calc(var(--index, 1) * 1.5rem)) scale(0.95);
+}
+
+/* Nuevo efecto active que se combina con el hover */
+.column_item:active {
+    transform: translateY(calc(var(--index, 1) * 1.5rem)) scale(0.92);
+    opacity: 0.9;
+    transition: all 0.15s ease;
+}
+
+.column_item:active .column_item_img_wrapper img {
+    filter: brightness(0.95);
+}
+
+/* Eliminar el efecto de zoom anterior si existe */
+.column_item:hover .column_item_img_wrapper img {
+    transform: scale(1);
+}
+
+@keyframes adjust-position {
+	/* Start position: shift entire column up, but not so that it goes out of view */
+	from {
+		transform: translateY(calc(-100% + 100vh));
+	}
+
+	/* End position: shift entire column down, but not so that it goes out of view */
+	to {
+		transform: translateY(calc(100% - 100vh));
+	}
+}
+
+.column_item_link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+/* Asegurarnos de que los efectos existentes siguen funcionando
+.column_item_link:hover .column_item,
+.column_item_link:active .column_item {
+} */
+
+
+.column_item_title {
+    margin: 0;
+    font-size: clamp(0.9rem, 2vw, 1.8rem);
+    font-weight: 600;
+    color: var(--dark_green);
+    line-height: 1.2;
+    font-family: 'NeueWorld', serif;
+    position: relative;
+}
+
+.column_item_description {
+    margin: 0;
+    font-size: clamp(0.8rem, 1.5vw, 1.1rem);
+    line-height: 1.4;
+    color: var(--dark_green);
+    font-family: 'NeueMontreal', sans-serif;
+    font-weight: 300;
+    opacity: 0.8;
+}
+
+.scroll-top {
+    position: fixed;
+    bottom: 3rem;
+    right: 3rem;
+    background-color: var(--dark_green);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    cursor: none;
+    z-index: 9998;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+/* Efecto hover */
+.scroll-top:hover {
+    background-color: var(--orange);
+}
+
+.scroll-top span {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 9999;
+}
+
+/* Media query para móviles */
+@media (max-width: 768px) {
+    .scroll-top {
+        width: 60px;
+        height: 60px;
+        bottom: 1rem;
+        right: 1rem;
+    }
+    
+    .scroll-top span {
+        font-size: 0.8rem;
+    }
+}
+
+.column_img {
+    position: relative;
+    overflow: hidden;
+    cursor: none;
+}
+
+.column_img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    will-change: transform;
+    transition: transform 1.5s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.column_img-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.1) 100%);
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: all 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+}

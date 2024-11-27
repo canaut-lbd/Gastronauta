@@ -1,0 +1,663 @@
+:root {
+    --beige: #F1EFEB;
+    --dark_green: #3C3812;
+    --orange: #FAC27D;
+    --pink: #F0B3C5;
+    --blue: #A0D8F2;
+    --green: #928D51;
+    --dark: #201804;
+    --cursor: #3C381280;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-family: "NeueMontreal", sans-serif;
+}
+
+/* Sección hero - imagen principal de la ruta */
+.hero-section {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.hero-image-container {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+}
+
+.image-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.5) 100%
+    );
+    z-index: 1;
+    mix-blend-mode: multiply;
+}
+
+.hero-content {
+    color: var(--beige);
+    width: 100%; /* Ancho inicial completo */
+    height: 100vh; /* Altura completa */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centrar el contenido verticalmente */
+    align-items: center; /* Centrar el contenido horizontalmente */
+    position: absolute;
+    z-index: 2;
+    overflow-wrap: break-word;
+    overflow: hidden;
+    padding-inline: 2rem;
+   
+}
+
+
+.hero-content h1 {
+    color: var(--beige);
+    font-family: 'NeueWorld',serif;
+    font-size: 6rem;
+    margin: 0;
+    margin-bottom: 1rem;
+    font-weight: 500;
+   
+}
+
+.hero-content p {
+    color: var(--beige);
+    font-family: 'NeueMontreal', sans-serif;
+    font-size: 1.2rem;
+    margin: 0;
+    opacity: 0.9;
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+
+
+
+/* Sección de contenido de la derecha: secciones info, historia, comida, etc. */
+.content-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100vh;
+    background: white;
+    transform: translateX(100%);
+    opacity: 0;
+    overflow-y: auto;
+}
+.content-container::-webkit-scrollbar {
+    display: none;
+}
+.sections-wrapper {
+    padding: 2rem;
+    margin-top: 50vh;
+    min-height: calc(100vh + 200vh);
+}
+
+.content-section {
+    font-family: "NeueMontreal", sans-serif;
+    margin-bottom: 4rem;
+    padding: 2rem;
+    position: relative;
+    padding-bottom: 3rem;
+    color: var(--dark);
+    opacity: 1;
+}
+
+.content-section::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(
+        to right,
+        transparent,
+        var(--dark_green),
+        transparent
+    );
+}
+
+.content-section:last-child::after {
+    display: none;
+}
+
+.content_h2 {
+    font-size: clamp(1.5rem, 3vw, 3.5rem);
+    font-family: "NeueWorld", serif;
+    margin: 1rem 0;
+}
+
+.restaurant-info-card {
+    display:flex;
+    flex-direction: column;
+    align-items: justify-conten;
+    border-radius: 16px;
+    padding: 1rem;
+    margin: 1rem 0;
+    width:100%;
+}
+
+.info-item {
+    width:100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.info-item:last-child {
+    border-bottom: none;
+}
+
+.info-label {
+    color: #151515;
+    font-size: 0.95rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.info-label i {
+    width: 20px;
+    color: currentColor;
+}
+
+.info-value {
+    color: #212529;
+    font-weight: 600;
+    text-align: right;
+}
+
+/* Slider de comparación de imágenes */
+.image-comparison {
+    position: relative;
+    width: 100%;
+    height: 400px; /* Ajusta el alto según tu diseño */
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.image-before,
+.image-after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image-before {
+    z-index: 1;
+    /* Imagen antigua encima */
+    clip-path: inset(0 0 0 50%); /* Muestra mitad derecha inicialmente */
+    transition: clip-path 0.2s ease;
+    filter: grayscale(100%);
+
+}
+
+.image-after {
+    z-index: 0; /* Imagen nueva debajo */
+}
+
+.slider-handle {
+    position: absolute;
+    top: 0;
+    left: 50%; /* Posición inicial en el centro */
+    width: 2px;
+    height: 100%;
+    transform: translateX(-50%);
+    background: white;
+    cursor: ew-resize;
+    z-index: 2;
+}
+
+.slider-line {
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    background: white;
+}
+
+.slider-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: white;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.slider-button i {
+    color: #333;
+    font-size: 1rem;
+}
+
+.two-column-layout {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    gap: 2rem;
+    align-items: baseline;
+    margin-top: 4rem;
+}
+
+.column-left {
+    justify-self: start;
+}
+.column-right p {
+    font-size:1rem;
+    line-height: 1.5;
+}
+
+.column-right {
+    justify-self: start;
+}
+
+.highlight-title {
+    margin: 0;
+    font-size:1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--dark_green);
+}
+
+.image-figure {
+    margin: 0;  /* Elimina el margen por defecto del figure */
+    width: 100%;
+}
+
+figcaption {
+    text-align: center;
+    margin-top: 1rem;
+    color: #666;  /* O el color que prefieras */
+    font-style: italic;
+    font-size: 0.9rem;  /* Ajusta el tamaño según necesites */
+}
+
+.food-carousel {
+    width: 100%;
+    overflow: hidden;
+}
+
+.food-card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem 0;
+    position: relative;
+    z-index: 2;
+}
+
+.food-card img,
+.food-video {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+    border-radius: 8px;
+    position: relative;
+    z-index: 3;
+}
+
+.food-title {
+    margin: 0 0 1rem 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--dark);
+    text-align: left;
+}
+
+.food-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.swiper-slide {
+    cursor: grab;
+    position: relative;
+    z-index: 1;
+}
+
+.swiper-slide:active {
+    cursor: grabbing;
+}
+
+.section-intro {
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+
+.swiper-slide {
+    cursor: grab;
+    position: relative;
+    z-index: 1;
+}
+
+.food-card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem 0;
+    position: relative;
+    z-index: 2;
+}
+
+.food-video {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    position: relative;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.video-wrapper {
+    width: 100%;
+    height: 400px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.food-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+.swiper-slide-active .video-wrapper {
+    z-index: 5;
+}
+
+.environment-gallery {
+    margin: 3rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.gallery-main {
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.gallery-main img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.gallery-main img:hover {
+    transform: scale(1.05);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    height: 200px;
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.05);
+}
+
+.environment-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12rem;  /* Espacio entre la galería y el texto */
+}
+
+/* ==========
+Media queries
+=== */
+
+@media screen and (max-width: 900px) {
+    .hero-section {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .hero-image-container {
+        height: 100vh;
+        width: 100%;
+    }
+
+    .content-container {
+        position: relative;
+        top: 0;
+        right: 0;
+        width: 100%;
+        /* height: auto; */
+    }
+
+    .environment-content {
+        gap: 3rem;
+    }
+}
+
+/* Ajustes adicionales para móviles muy pequeños */
+@media screen and (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr; /* 1 columna en móviles pequeños */
+    }
+}
+
+.hero-content .share-button {
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    background-color: transparent;
+    color: var(--beige);
+    border: 2px solid var(--beige);
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.hero-content .share-button.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hero-content .share-button:hover {
+    background-color: var(--beige);
+    color: var(--dark_green);
+    transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-content .share-button {
+        margin-top: 1.5rem;
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Ocultar el custom cursor sobre el botón */
+.share-button:hover ~ .custom-cursor {
+    opacity: 0;
+}
+
+/* Asegurarnos de que el cursor normal aparece sobre el botón */
+.share-button {
+    cursor: pointer !important;
+}
+
+.back-button {
+    position: fixed;
+    top: 2rem;
+    left: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: var(--beige);
+    text-decoration: none;
+    font-size: 1rem;
+    z-index: 100;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateX(-20px);
+    animation: fadeInButton 0.5s ease forwards;
+    animation-delay: 0.5s;
+    cursor: pointer !important;
+}
+
+.back-button:hover {
+    color: var(--orange);
+}
+
+.back-button i {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.back-button:hover i {
+    transform: translateX(-5px);
+}
+
+@keyframes fadeInButton {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .back-button {
+        top: 1.5rem;
+        left: 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Estilo base para todos los párrafos */
+p,
+.section-intro,
+.food-description,
+.column-right p {
+    font-family: "NeueMontreal", sans-serif;
+    font-size: clamp(1rem, 1.1vw, 1.2rem);
+    line-height: 1.8;
+    color: var(--dark);
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.02em;
+}
+
+/* Párrafos introductorios con más énfasis */
+.section-intro {
+    font-size: clamp(1.1rem, 1.2vw, 1.3rem);
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+/* Ajustes específicos para descripciones de comida */
+.food-description {
+    margin-top: 0.5rem;
+}
+
+/* Ajustes responsive */
+@media screen and (max-width: 768px) {
+    p,
+    .section-intro,
+    .food-description,
+    .column-right p {
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+
+    .section-intro {
+        font-size: 1.1rem;
+    }
+}
+
+/* ==========
+ESTILOS SLIDER
+=== */
+.content-section .food-carousel .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    background: rgba(60, 56, 18, 0.2); 
+    opacity: 1;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.content-section .food-carousel .swiper-pagination-bullet-active {
+    background: var(--dark_green);
+    width: 30px; 
+    border-radius: 5px; 
+}
+
+.content-section .food-carousel .swiper-pagination {
+    position: relative;
+    bottom: 0;
+    margin-top: 1rem;
+}
+
+
+.content-section .food-carousel .swiper-pagination-bullet:not(:last-child) {
+    margin-right: 8px;
+}
