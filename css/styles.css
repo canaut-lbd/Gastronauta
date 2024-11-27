@@ -148,12 +148,13 @@ body {
 
 .horizontal-scroll-section {
     position: relative;
-    width: 100vw; /* Asegúrate de que ocupe el 100% del ancho de la ventana */
+    width: 100vw;
     height: 100vh;
     display: flex;
     align-items: center;
     background-color: var(--beige);
-    overflow-x: hidden; /* Asegúrate de que no haya scroll horizontal en esta sección */
+    overflow-x: hidden;
+    z-index: 1;
 }
 
 .pin-wrap {
@@ -251,22 +252,25 @@ body {
    ============================================= */
 
    .carousel-section {
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
     background-color: var(--beige);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 2rem;
-    overflow-x: hidden; /* Añadir esto */
-    position: relative; /* Añadir esto */
-    width: 100%; /* Añadir esto */
+    position: relative;
+    width: 100%;
+    padding: 2rem 0;
+    z-index: 2;
 }
 
    .carousel-container {
     position: relative;
     width: 100%;
-    min-height: 90vh;
+    min-height: 80vh;
+    z-index: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
