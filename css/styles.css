@@ -143,7 +143,7 @@ body {
 }
 
 /* =============================================
-   6. SECCIÓN DE SCROLL HORIZONTAL
+   4. SECCIÓN DE SCROLL HORIZONTAL
    ============================================= */
 
 .horizontal-scroll-section {
@@ -247,7 +247,7 @@ body {
     height: 100%;
 }
 /* =============================================
-   7. CAROUSEL
+   5. CAROUSEL
    ============================================= */
 
    .carousel-section {
@@ -299,13 +299,14 @@ body {
     position: absolute;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;  /* Asegura que el contenido esté en la parte superior de la card */
+    justify-content: flex-start; 
     align-items: center;
-    width: 400px; /* Ajusta el tamaño de la card */
-    height: 650px; /* Ajusta la altura de la card */
+    width: 400px; 
+    height: 650px; 
     border-radius: 12px;
     overflow: hidden;
-    transform: rotate(0deg);  /* Ajusta la rotación para que las cards se vean rectas */
+    transform: rotate(0deg); 
+    /* Estilos que añado para quitar el efecto de selección y tap cuando arrastras el carrusel*/
     user-select: none;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -316,7 +317,7 @@ body {
 
 .card img {
     width: 100%;
-    height: 90%; /* La imagen ocupa el 70% de la altura de la card */
+    height: 90%; 
     object-fit: cover;
     border-radius: 12px;
     pointer-events: none;
@@ -369,7 +370,6 @@ body {
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-/* Asegurar que el botón no tiene estilos por defecto */
 .btn-primary:focus {
     outline: none;
 }
@@ -377,7 +377,7 @@ body {
 
 
 /* =============================================
-   5. TIRA DE DESTINOS
+   6. TIRA DE DESTINOS MÓVIL
    ============================================= */
 
 .destinations_container {
@@ -386,7 +386,7 @@ body {
     background-color: var(--dark_green);
     display: flex;
     align-items: center;
-    overflow: hidden; /* Evitar que se muestre scroll horizontal */
+    overflow: hidden; 
 }
 
 .destinations {
@@ -526,7 +526,7 @@ body {
 }
 
 /* =============================================
-    CUSTOM CURSOR
+   9. CUSTOM CURSOR
 ============================================= */
 .custom-cursor {
     position: fixed;

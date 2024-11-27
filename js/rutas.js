@@ -1,13 +1,11 @@
-
-// Poner esto al principio del archivo
-
 window.addEventListener('load', () => {
     const cards = document.querySelectorAll('.column_item');
     
     // Asegurarnos de que las cards están ocultas desde el inicio
     gsap.set(cards, { 
         opacity: 0,
-        y: 50
+        y: 50,
+        clearProps: 'scale' // Asegúrate de que GSAP no toque 'scale'
     });
 
     // Pequeño delay para asegurar que todo está listo
@@ -20,33 +18,12 @@ window.addEventListener('load', () => {
                 amount: 0.8,
                 ease: "power2.out"
             },
-            ease: "power2.out"
+            ease: "power2.out",
+            onComplete: () => gsap.set(cards, { clearProps: 'all' }) // Limpia propiedades después de la animación
         });
     }, 100);
 });
 
-// Al inicio del archivo
-console.log('rutas.js loaded');
-
-// Funcionalidad del botón scroll to top
-const scrollTopButton = document.querySelector('.scroll-top');
-
-// Mostrar/ocultar el botón basado en el scroll
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 300) {
-        scrollTopButton.classList.add('visible');
-    } else {
-        scrollTopButton.classList.remove('visible');
-    }
-});
-
-// Scroll to top cuando se hace click
-scrollTopButton.addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-});
 // Cursor personalizado
 function updateCursorText() {
     const cursor = document.querySelector('.custom-cursor');
@@ -101,6 +78,22 @@ document.addEventListener('mousemove', (e) => {
     updateCursorText();
 });
 
-// Llamar a updateCursorText cuando la página carga
-document.addEventListener('DOMContentLoaded', updateCursorText);
+// Funcionalidad del botón scroll to top
+const scrollTopButton = document.querySelector('.scroll-top');
 
+// Mostrar/ocultar el botón basado en el scroll
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+        scrollTopButton.classList.add('visible');
+    } else {
+        scrollTopButton.classList.remove('visible');
+    }
+});
+
+// Scroll to top cuando se hace click
+scrollTopButton.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
