@@ -4,7 +4,13 @@ const horizontalSection = gsap.timeline({
     scrollTrigger: {
         trigger: ".horizontal-scroll-section",
         start: "top top",
-        end: () => `+=${document.querySelector(".animation-wrap").offsetWidth}`,
+        end: () => {
+            const totalWidth = document.querySelector(".animation-wrap").offsetWidth;
+            if (window.innerWidth <= 600) {
+                return `+=${totalWidth * 1.2}`;
+            }
+            return `+=${totalWidth}`;
+        },
         pin: true,
         scrub: 1.5,
         invalidateOnRefresh: true,

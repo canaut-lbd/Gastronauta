@@ -711,3 +711,68 @@ body {
     }
 }
 
+/* Diseño móvil para el carousel */
+@media screen and (max-width: 600px) {
+    .carousel-section {
+        min-height: auto;
+        padding: 2rem 0;
+        overflow-x: hidden;
+    }
+
+    .carousel-heading h2 {
+        font-size: 2rem;
+        padding: 0 1rem;
+        text-align: center;
+    }
+
+    .carousel-container {
+        padding: 1rem;
+        min-height: auto;
+    }
+
+    .carousel-track {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        position: static;
+        padding: 0 1rem;
+    }
+
+    .card {
+        position: static; /* Quitar posición absoluta */
+        width: 100%;
+        height: auto;
+        transform: none !important; /* Eliminar todas las transformaciones */
+        margin-bottom: 1.5rem;
+    }
+
+    .card img {
+        height: 250px; /* Altura fija para las imágenes */
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .card-text {
+        padding: 1rem 0;
+    }
+
+    .card-text h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .card-text p {
+        font-size: 1rem;
+    }
+
+    .carousel-button {
+        margin-top: 2rem;
+        padding: 0 1rem;
+    }
+
+    .btn-primary {
+        width: 100%;
+        padding: 1rem;
+    }
+}
+
