@@ -714,9 +714,9 @@ body {
 /* Diseño móvil para el carousel */
 @media screen and (max-width: 600px) {
     .carousel-section {
-        min-height: auto;
-        padding: 1rem 0;
-        overflow-x: hidden;
+      display:flex;
+      flex-direction: column;   
+      gap:1rem;
     }
 
     .carousel-heading h2 {
@@ -733,7 +733,7 @@ body {
 
     .carousel-track {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         gap: 1rem;
         position: static;
         padding: 0 1rem;
