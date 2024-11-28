@@ -636,15 +636,16 @@ p,
 }
 
 @media screen and (max-width: 600px) {
+    /* Hero section */
     .hero-section {
-        height: 70vh; /* Deja que la altura sea ajustada automáticamente */
+        height: 70vh;
         position: relative;
     }
 
     .hero-image-container {
         position: relative;
         width: 100%;
-        height: 80vh; /* Altura fija para la imagen */
+        height: 80vh;
     }
 
     .hero-content {
@@ -655,71 +656,14 @@ p,
         width: 100%;
         max-width: 100%;
         padding: 2rem 1rem;
-        text-align: left; /* O mantén center si prefieres */
+        text-align: left;
     }
 
+    /* Content container */
     .content-container {
         position: relative; 
         width: 100%; 
         transform: none;
-        padding-top: 1rem;
-    }
-
-    /* Asegurar que todo fluya normalmente */
-    .hero-image {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    .environment-content {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;  /* Reducimos el gap para mobile */
-    }
-
-    .environment-gallery {
-        margin: 1rem 0;  /* Reducimos los márgenes */
-        width: 100%;
-    }
-
-    .gallery-main {
-        height: 300px;  /* Altura más pequeña para mobile */
-    }
-
-    .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);  /* 2 columnas en lugar de 3 */
-        height: auto;  /* Altura automática */
-        gap: 0.5rem;  /* Gap más pequeño */
-    }
-
-    .gallery-grid img {
-        height: 150px;  /* Altura fija para las imágenes pequeñas */
-    }
-
-    .two-column-layout {
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-        margin-top: 2rem;
-    }
-
-    .column-left,
-    .column-right {
-        width: 100%;
-    }
-
-    .highlight-title {
-        margin-bottom: 1rem;
-    }
-}
-
-/* Ajuste para content-container en dispositivos pequeños */
-@media screen and (max-width: 600px) {
-    .content-container {
-        position: relative; 
-        transform: none; 
         opacity: 1; 
         height: auto;
         overflow-y: visible; 
@@ -737,7 +681,64 @@ p,
     }
 
     .content_h2 {
-        font-size: 1.5rem; /* Reduce el tamaño del título */
+        font-size: 1.5rem;
+    }
+
+    /* Environment section */
+    .environment-content {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .environment-gallery {
+        margin: 1rem 0;
+        width: 100%;
+    }
+
+    .gallery-main {
+        height: 300px;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        height: auto;
+        gap: 0.5rem;
+    }
+
+    .gallery-grid img {
+        height: 150px;
+    }
+
+    /* Two column layout */
+    .two-column-layout {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .column-left,
+    .column-right {
+        width: 100%;
+    }
+
+    .highlight-title {
+        margin-bottom: 1rem;
+    }
+
+    /* Figure captions */
+    figcaption {
+        margin-top: 0.3rem;
+        margin-bottom: 1.5rem;
+        font-size: 0.8rem;
+    }
+
+    /* Share button */
+    .hero-content .share-button {
+        margin-top: 1.5rem;
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
     }
 }
 
