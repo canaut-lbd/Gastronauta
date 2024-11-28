@@ -637,7 +637,7 @@ p,
 
 @media screen and (max-width: 600px) {
     .hero-section {
-        height: auto; /* Deja que la altura sea ajustada automáticamente */
+        height: 70vh; /* Deja que la altura sea ajustada automáticamente */
         position: relative;
     }
 
