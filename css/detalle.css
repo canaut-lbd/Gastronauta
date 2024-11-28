@@ -637,16 +637,26 @@ p,
 }
 
 @media screen and (max-width: 600px) {
+    /* Reset de estilos para el hero */
     .hero-section {
         height: auto;
         position: relative;
+        overflow: visible;
     }
 
     .hero-image-container {
         position: relative;
         width: 100%;
-        height: 60vh; /* Altura fija para la imagen */
+        height: 60vh;
         clip-path: none;
+        overflow: hidden;
+    }
+
+    .hero-image {
+        position: relative; /* Cambiado de absolute */
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 
     .hero-content {
@@ -655,21 +665,49 @@ p,
         padding: 2rem 1rem;
         background: rgba(0, 0, 0, 0.7);
         transform: none;
+        z-index: 2;
     }
 
+    /* Contenedor principal */
     .content-container {
         position: relative;
         width: 100%;
         transform: none;
-        padding-top: 1rem;
+        padding: 1rem;
+        overflow: visible;
+        z-index: 1;
     }
 
-    /* Asegurar que todo fluya normalmente */
-    .hero-image {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+    /* Ajustes para la sección de entorno */
+    .environment-content {
+        position: relative;
+        z-index: 1;
+    }
+
+    .gallery-grid {
+        position: relative;
+        z-index: 1;
+        margin-bottom: 2rem;
+    }
+
+    .two-column-layout {
+        position: relative;
+        z-index: 1;
+        margin-top: 2rem;
+        clear: both;
+    }
+
+    /* Asegurar que todas las secciones tengan el espacio correcto */
+    .content-section {
+        position: relative;
+        margin-bottom: 3rem;
+        clear: both;
+    }
+
+    /* Ajuste específico para la última sección */
+    .content-section:last-child {
+        margin-bottom: 0;
+        padding-bottom: 3rem;
     }
 }
 
