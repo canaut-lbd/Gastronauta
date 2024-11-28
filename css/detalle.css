@@ -1,10 +1,9 @@
-/* =============================================
-   1. VARIABLES GLOBALES Y RESET
-   ============================================= */
 :root {
     --beige: #F1EFEB;
     --dark_green: #3C3812;
     --orange: #FAC27D;
+    --pink: #F0B3C5;
+    --blue: #A0D8F2;
     --green: #928D51;
     --dark: #201804;
     --cursor: #3C381280;
@@ -18,9 +17,7 @@ body {
     font-family: "NeueMontreal", sans-serif;
 }
 
-/* =============================================
-   2. SECCIÓN HERO - IMAGEN PRINCIPAL DE LA RUTA
-   ============================================= */
+/* Sección hero - imagen principal de la ruta */
 .hero-section {
     height: 100vh;
     position: relative;
@@ -68,13 +65,15 @@ body {
 
 }
 
+
 .hero-content h1 {
     color: var(--beige);
     font-family: 'NeueWorld',serif;
     font-size: 6rem;
     margin: 0;
     margin-bottom: 1rem;
-    font-weight: 500;  
+    font-weight: 500;
+   
 }
 
 .hero-content p {
@@ -195,7 +194,7 @@ body {
 .image-comparison {
     position: relative;
     width: 100%;
-    height: 400px; 
+    height: 400px; /* Ajusta el alto según tu diseño */
     overflow: hidden;
     border-radius: 8px;
     margin-bottom: 1rem;
@@ -210,23 +209,24 @@ body {
     height: 100%;
     object-fit: cover;
 }
-/* Utilizo el clip-path para mostrar la mitad derecha de la imagen */
+
 .image-before {
     z-index: 1;
-    clip-path: inset(0 0 0 50%); 
+    /* Imagen antigua encima */
+    clip-path: inset(0 0 0 50%); /* Muestra mitad derecha inicialmente */
     transition: clip-path 0.2s ease;
     filter: grayscale(100%);
 
 }
 
 .image-after {
-    z-index: 0; 
+    z-index: 0; /* Imagen nueva debajo */
 }
-/* Posociono el handle en el medio para poder realizar la comparación */
+
 .slider-handle {
     position: absolute;
     top: 0;
-    left: 50%; 
+    left: 50%; /* Posición inicial en el centro */
     width: 2px;
     height: 100%;
     transform: translateX(-50%);
@@ -290,7 +290,7 @@ body {
 }
 
 .image-figure {
-    margin: 0;
+    margin: 0;  /* Elimina el margen por defecto del figure */
     width: 100%;
 }
 
@@ -458,12 +458,12 @@ figcaption {
 .environment-content {
     display: flex;
     flex-direction: column;
-    gap: 12rem;  
+    gap: 12rem;  /* Espacio entre la galería y el texto */
 }
 
-/* =============================================
-   MEDIA QUERIES
-   ============================================= */
+/* ==========
+Media queries
+=== */
 
 @media screen and (max-width: 900px) {
     .hero-section {
@@ -481,7 +481,7 @@ figcaption {
         top: 0;
         right: 0;
         width: 100%;
-
+        /* height: auto; */
     }
 
     .environment-content {
@@ -496,7 +496,7 @@ figcaption {
     }
 
     .gallery-grid {
-        grid-template-columns: 1fr; 
+        grid-template-columns: 1fr; /* 1 columna en móviles pequeños */
     }
 }
 
@@ -528,7 +528,7 @@ figcaption {
     transform: translateY(-2px);
 }
 
-/* Móviles tablets - móvil grande */
+/* Responsive */
 @media (max-width: 768px) {
     .hero-content .share-button {
         margin-top: 1.5rem;
@@ -537,13 +537,14 @@ figcaption {
     }
 }
 
-/* Oculto el custom cursor sobre el botón */
+/* Ocultar el custom cursor sobre el botón */
 .share-button:hover ~ .custom-cursor {
     opacity: 0;
 }
 
+/* Asegurarnos de que el cursor normal aparece sobre el botón */
 .share-button {
-    cursor: pointer;
+    cursor: pointer !important;
 }
 
 .back-button {
@@ -635,16 +636,15 @@ p,
 }
 
 @media screen and (max-width: 600px) {
-    /* Hero section */
     .hero-section {
-        height: 70vh;
+        height: 70vh; /* Deja que la altura sea ajustada automáticamente */
         position: relative;
     }
 
     .hero-image-container {
         position: relative;
         width: 100%;
-        height: 80vh;
+        height: 80vh; /* Altura fija para la imagen */
     }
 
     .hero-content {
@@ -655,14 +655,71 @@ p,
         width: 100%;
         max-width: 100%;
         padding: 2rem 1rem;
-        text-align: left;
+        text-align: left; /* O mantén center si prefieres */
     }
 
-    /* Content container */
     .content-container {
         position: relative; 
         width: 100%; 
         transform: none;
+        padding-top: 1rem;
+    }
+
+    /* Asegurar que todo fluya normalmente */
+    .hero-image {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .environment-content {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;  /* Reducimos el gap para mobile */
+    }
+
+    .environment-gallery {
+        margin: 1rem 0;  /* Reducimos los márgenes */
+        width: 100%;
+    }
+
+    .gallery-main {
+        height: 300px;  /* Altura más pequeña para mobile */
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);  /* 2 columnas en lugar de 3 */
+        height: auto;  /* Altura automática */
+        gap: 0.5rem;  /* Gap más pequeño */
+    }
+
+    .gallery-grid img {
+        height: 150px;  /* Altura fija para las imágenes pequeñas */
+    }
+
+    .two-column-layout {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .column-left,
+    .column-right {
+        width: 100%;
+    }
+
+    .highlight-title {
+        margin-bottom: 1rem;
+    }
+}
+
+/* Ajuste para content-container en dispositivos pequeños */
+@media screen and (max-width: 600px) {
+    .content-container {
+        position: relative; 
+        transform: none; 
         opacity: 1; 
         height: auto;
         overflow-y: visible; 
@@ -680,64 +737,7 @@ p,
     }
 
     .content_h2 {
-        font-size: 1.5rem;
-    }
-
-    /* Environment section */
-    .environment-content {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-    }
-
-    .environment-gallery {
-        margin: 1rem 0;
-        width: 100%;
-    }
-
-    .gallery-main {
-        height: 300px;
-    }
-
-    .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-        height: auto;
-        gap: 0.5rem;
-    }
-
-    .gallery-grid img {
-        height: 150px;
-    }
-
-    /* Two column layout */
-    .two-column-layout {
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-        margin-top: 2rem;
-    }
-
-    .column-left,
-    .column-right {
-        width: 100%;
-    }
-
-    .highlight-title {
-        margin-bottom: 1rem;
-    }
-
-    /* Figure captions */
-    figcaption {
-        margin-top: 0.3rem;
-        margin-bottom: 1.5rem;
-        font-size: 0.8rem;
-    }
-
-    /* Share button */
-    .hero-content .share-button {
-        margin-top: 1.5rem;
-        padding: 0.6rem 1.2rem;
-        font-size: 0.9rem;
+        font-size: 1.5rem; /* Reduce el tamaño del título */
     }
 }
 
