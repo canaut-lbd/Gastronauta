@@ -182,7 +182,7 @@ gsap.utils.toArray('.content-section').forEach((section) => {
 // =============================================
 //  4. CURSOR PERSONALIZADO
 // =============================================
-
+// Función para cambiar el comportamiento del cursor en función de sobre qué elemento o en qué región este
 function updateCursorText() {
     const cursor = document.querySelector('.custom-cursor span');
     const foodCarousel = document.querySelector('.food-carousel');
@@ -190,16 +190,16 @@ function updateCursorText() {
     const galleryGrid = document.querySelector('.gallery-grid');
     const shareButton = document.querySelector('.share-button');
     const backButton = document.querySelector('.back-button');
-    
+    //Obtengo la posición del ratón
     const mouseY = event.clientY;
     const mouseX = event.clientX;
-    
+    //Obtengo las dimensiones de los elementos
     const carouselRect = foodCarousel.getBoundingClientRect();
     const comparisonRect = imageComparison?.getBoundingClientRect();
     const galleryGridRect = galleryGrid?.getBoundingClientRect();
     const shareButtonRect = shareButton?.getBoundingClientRect();
     const backButtonRect = backButton?.getBoundingClientRect();
-
+    //Oculto el cursor cuando me encuentro sobre el botón compartir o sobre el botón "volver a rutas" para que no tape el contenido
     if ((shareButton && 
          mouseX >= shareButtonRect.left && 
          mouseX <= shareButtonRect.right &&
@@ -213,18 +213,18 @@ function updateCursorText() {
         cursor.parentElement.style.opacity = 0;
         return;
     }
-    
+    //Cambio el cursor según la sección sobre la que se encuentra
     cursor.parentElement.style.opacity = 1;
-
+    //Sobre el slide handle pongo "drag"
     if (imageComparison && 
         mouseY >= comparisonRect.top && 
         mouseY <= comparisonRect.bottom) {
         cursor.textContent = 'drag';
-    }
+    } //En el carrusel de Comida coloco "drag" para que el usuario haga slide.
     else if (mouseY >= carouselRect.top && 
              mouseY <= carouselRect.bottom) {
         cursor.textContent = 'drag';
-    }
+    } //Sobre el grid pongo "click" para clicar en las imágenes y activar la siguiente animación
     else if (galleryGrid && 
              mouseY >= galleryGridRect.top && 
              mouseY <= galleryGridRect.bottom) {
@@ -247,8 +247,6 @@ function initCustomCursor() {
                 updateCursorText();
             }
         });
-
-        // Actualizar el texto en scroll solo en desktop
         window.addEventListener('scroll', updateCursorText);
     }
 }
@@ -261,23 +259,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Añadir esta nueva funcionalidad para la galería del entorno
+// =============================================
+//  5. FUNCIÓN PARA MOVER LAS IMÁGENES DE LA GALERÍA DEL ENTORNO
+// =============================================
 document.addEventListener('DOMContentLoaded', function() {
     const mainImage = document.querySelector('.gallery-main img');
     const thumbnails = document.querySelectorAll('.gallery-thumbnail');
 
     thumbnails.forEach(thumb => {
         thumb.addEventListener('click', function() {
-            // Guardar la src de la imagen principal actual
+            // Guardo la src de la imagen principal actual
             const currentMainSrc = mainImage.src;
             
-            // Cambiar la imagen principal por la thumbnail clickeada
+            // Cambio la imagen principal por la thumbnail clicada
             mainImage.src = this.src;
             
-            // Actualizar la thumbnail con la imagen que estaba en principal
+            // Actualizo la thumbnail con la imagen que estaba en principal
             this.src = currentMainSrc;
             
-            // Opcional: añadir una pequeña animación
             mainImage.style.opacity = '0';
             setTimeout(() => {
                 mainImage.style.opacity = '1';

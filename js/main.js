@@ -3,6 +3,9 @@ gsap.registerPlugin(ScrollTrigger, SplitText);
 //====================
 //SECCIÓN ANIMACIÓN HORIZONTAL
 //====================
+//Creo la timeline para que la animación comience cuando la parte superior de la sección alcanza la parte superior del viewport
+//La animación mueve .animation-wrap horizontalmente hacia la izquierda en una cantidad que equivale al ancho total menos el ancho de la ventana,
+//así consigo que toda la sección se desplace hacia la izquierda. 
 const horizontalSection = gsap.timeline({
     scrollTrigger: {
         trigger: ".horizontal-scroll-section",
@@ -11,7 +14,7 @@ const horizontalSection = gsap.timeline({
         end: () => {
             const totalWidth = document.querySelector(".animation-wrap").offsetWidth;
             if (window.innerWidth <= 600) {
-                return `+=${totalWidth * 1.2}`;
+                return `+=${totalWidth * 1.5}`;
             }
             return `+=${totalWidth}`;
         },
@@ -59,7 +62,8 @@ horizontalSection.to(".animation-wrap", {
     x: () => -(document.querySelector(".animation-wrap").offsetWidth - window.innerWidth),
     ease: "none"
 });
-
+// Con esta funcion selecciono todos los elementos .text-block y aplico las animaciones a cada uno de ellos.
+//Inicialmente, cada bloque está oculto y se mueve despues hacia el centro con la animacion. 
 gsap.utils.toArray('.text-block').forEach((block, index, blocks) => {
     const contentWrapper = block.querySelector('.content-wrapper');
     const arrow = block.querySelector('.path-arrow path');
@@ -91,9 +95,11 @@ gsap.utils.toArray('.text-block').forEach((block, index, blocks) => {
     ScrollTrigger.create({
         trigger: block,
         containerAnimation: horizontalSection,
+        //start y end: definen los puntos en los cuales la animación de cada bloque comienza (start: "left 65%") y termina (end: "right 45%").
         start: "left 65%",
         end: "right 45%",
         scrub: 1,
+        //Al entrar en el viewport, los elementos (textContent e image) del bloque se animan para aparecer con sus efectos de opacidad y escalado.
         onEnter: () => {
             gsap.to(textContent, {
                 opacity: 1,
@@ -112,6 +118,7 @@ gsap.utils.toArray('.text-block').forEach((block, index, blocks) => {
 
             contentWrapper.classList.add('active');
         },
+        //Se actualiza el trazo de la flecha a medida que el usuario se desplaza. Cuando el progreso de desplazamiento (progress) supera un umbral (0.6), se anima el siguiente bloque (nextBlock).
         onUpdate: (self) => {
             if (arrow) {
                 const progress = self.progress;
@@ -159,10 +166,10 @@ gsap.utils.toArray('.text-block').forEach((block, index, blocks) => {
 function initHeroAnimation() {
     const heroElement = document.querySelector(".hero_title");
     
-    // Aseguramos que el elemento sea visible
+    // Aseguro que el titulo sea visible
     gsap.set(heroElement, { opacity: 1 });
 
-    // Dividimos en caracteres manteniendo la estructura
+    // Divido el titulo en caracteres
     const title = new SplitText(".hero_title", {
         type: "chars, words",
         charsClass: "char",
@@ -172,20 +179,20 @@ function initHeroAnimation() {
         preserveSpaces: true
     });
 
-    // Aseguramos que las palabras se mantengan juntas
+    // Aseguro que las palabras se mantengan juntas
     title.words.forEach(word => {
         word.style.display = 'inline-block';
         word.style.whiteSpace = 'nowrap';
     });
 
-    // Configuración inicial de los caracteres
+    // Al principio los caracteres permanecen ocultos
     gsap.set(title.chars, {
         y: 100,
         opacity: 0,
         display: 'inline-block'
     });
 
-    // Animación de los caracteres
+    // Despues suben y aparecen poco a poco con el stagger 
     gsap.to(title.chars, {
         duration: 1.4,
         y: 0,
