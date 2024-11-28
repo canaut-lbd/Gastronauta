@@ -62,14 +62,14 @@ body {
     overflow-wrap: break-word;
     overflow: hidden;
     padding-inline: 2rem;
+
 }
 
 
 .hero-content h1 {
     color: var(--beige);
     font-family: 'NeueWorld',serif;
-    word-break: keep-all;
-    font-size: 5rem;
+    font-size: 6rem;
     margin: 0;
     margin-bottom: 1rem;
     font-weight: 500;
@@ -672,47 +672,6 @@ p,
         height: 100%;
         object-fit: cover;
     }
-
-    .environment-content {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;  /* Reducimos el gap para mobile */
-    }
-
-    .environment-gallery {
-        margin: 1rem 0;  /* Reducimos los márgenes */
-        width: 100%;
-    }
-
-    .gallery-main {
-        height: 300px;  /* Altura más pequeña para mobile */
-    }
-
-    .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);  /* 2 columnas en lugar de 3 */
-        height: auto;  /* Altura automática */
-        gap: 0.5rem;  /* Gap más pequeño */
-    }
-
-    .gallery-grid img {
-        height: 150px;  /* Altura fija para las imágenes pequeñas */
-    }
-
-    .two-column-layout {
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-        margin-top: 2rem;
-    }
-
-    .column-left,
-    .column-right {
-        width: 100%;
-    }
-
-    .highlight-title {
-        margin-bottom: 1rem;
-    }
 }
 
 /* Ajuste para content-container en dispositivos pequeños */
@@ -722,7 +681,7 @@ p,
         transform: none; 
         opacity: 1; 
         height: auto;
-        overflow-y: visible; 
+        overflow-y: visible; /* Habilita el scroll vertical */
         padding: 1rem;
     }
 
