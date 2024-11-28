@@ -633,6 +633,44 @@ p,
     }
 }
 
+@media screen and (max-width: 600px) {
+    .hero-image-container {
+        clip-path: none; /* Desactiva el clipPath */
+        width: 100%;
+        height: auto; /* Ajusta la altura automáticamente */
+    }
+
+    .hero-content {
+        width: 100%; /* Asegúrate de que no se limite el ancho */
+    }
+}
+
+/* Ajuste para content-container en dispositivos pequeños */
+@media screen and (max-width: 600px) {
+    .content-container {
+        position: relative; /* Permite que el scroll funcione naturalmente */
+        transform: none; /* Elimina la animación de entrada desde la derecha */
+        opacity: 1; /* Asegúrate de que sea visible */
+        height: auto; /* Ajusta la altura automáticamente */
+        overflow-y: visible; /* Habilita el scroll vertical */
+    }
+}
+
+/* Ajustes generales en contenido para móviles */
+@media screen and (max-width: 600px) {
+    .sections-wrapper {
+        padding: 1rem; /* Reduce el padding en dispositivos pequeños */
+        margin-top: 1rem; /* Ajusta el margen superior */
+    }
+
+    .content-section {
+        padding: 1rem; /* Reduce el padding */
+    }
+
+    .content_h2 {
+        font-size: 1.5rem; /* Reduce el tamaño del título */
+    }
+}
 /* ==========
 ESTILOS SLIDER
 === */
