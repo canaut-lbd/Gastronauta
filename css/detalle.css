@@ -1,9 +1,10 @@
+/* =============================================
+   1. VARIABLES GLOBALES Y RESET
+   ============================================= */
 :root {
     --beige: #F1EFEB;
     --dark_green: #3C3812;
     --orange: #FAC27D;
-    --pink: #F0B3C5;
-    --blue: #A0D8F2;
     --green: #928D51;
     --dark: #201804;
     --cursor: #3C381280;
@@ -17,7 +18,9 @@ body {
     font-family: "NeueMontreal", sans-serif;
 }
 
-/* Sección hero - imagen principal de la ruta */
+/* =============================================
+   2. SECCIÓN HERO - IMAGEN PRINCIPAL DE LA RUTA
+   ============================================= */
 .hero-section {
     height: 100vh;
     position: relative;
@@ -65,15 +68,13 @@ body {
 
 }
 
-
 .hero-content h1 {
     color: var(--beige);
     font-family: 'NeueWorld',serif;
     font-size: 6rem;
     margin: 0;
     margin-bottom: 1rem;
-    font-weight: 500;
-   
+    font-weight: 500;  
 }
 
 .hero-content p {
@@ -194,7 +195,7 @@ body {
 .image-comparison {
     position: relative;
     width: 100%;
-    height: 400px; /* Ajusta el alto según tu diseño */
+    height: 400px; 
     overflow: hidden;
     border-radius: 8px;
     margin-bottom: 1rem;
@@ -209,24 +210,23 @@ body {
     height: 100%;
     object-fit: cover;
 }
-
+/* Utilizo el clip-path para mostrar la mitad derecha de la imagen */
 .image-before {
     z-index: 1;
-    /* Imagen antigua encima */
-    clip-path: inset(0 0 0 50%); /* Muestra mitad derecha inicialmente */
+    clip-path: inset(0 0 0 50%); 
     transition: clip-path 0.2s ease;
     filter: grayscale(100%);
 
 }
 
 .image-after {
-    z-index: 0; /* Imagen nueva debajo */
+    z-index: 0; 
 }
-
+/* Posociono el handle en el medio para poder realizar la comparación */
 .slider-handle {
     position: absolute;
     top: 0;
-    left: 50%; /* Posición inicial en el centro */
+    left: 50%; 
     width: 2px;
     height: 100%;
     transform: translateX(-50%);
@@ -290,7 +290,7 @@ body {
 }
 
 .image-figure {
-    margin: 0;  /* Elimina el margen por defecto del figure */
+    margin: 0;
     width: 100%;
 }
 
@@ -458,12 +458,12 @@ figcaption {
 .environment-content {
     display: flex;
     flex-direction: column;
-    gap: 12rem;  /* Espacio entre la galería y el texto */
+    gap: 12rem;  
 }
 
-/* ==========
-Media queries
-=== */
+/* =============================================
+   MEDIA QUERIES
+   ============================================= */
 
 @media screen and (max-width: 900px) {
     .hero-section {
@@ -481,7 +481,7 @@ Media queries
         top: 0;
         right: 0;
         width: 100%;
-        /* height: auto; */
+
     }
 
     .environment-content {
@@ -496,7 +496,7 @@ Media queries
     }
 
     .gallery-grid {
-        grid-template-columns: 1fr; /* 1 columna en móviles pequeños */
+        grid-template-columns: 1fr; 
     }
 }
 
@@ -528,7 +528,7 @@ Media queries
     transform: translateY(-2px);
 }
 
-/* Responsive */
+/* Móviles tablets - móvil grande */
 @media (max-width: 768px) {
     .hero-content .share-button {
         margin-top: 1.5rem;
@@ -537,14 +537,13 @@ Media queries
     }
 }
 
-/* Ocultar el custom cursor sobre el botón */
+/* Oculto el custom cursor sobre el botón */
 .share-button:hover ~ .custom-cursor {
     opacity: 0;
 }
 
-/* Asegurarnos de que el cursor normal aparece sobre el botón */
 .share-button {
-    cursor: pointer !important;
+    cursor: pointer;
 }
 
 .back-button {
@@ -622,6 +621,20 @@ p,
 
 /* Ajustes responsive */
 @media screen and (max-width: 768px) {
+    /* Hero y botones */
+    .hero-content .share-button {
+        margin-top: 1.5rem;
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    .back-button {
+        top: 1.5rem;
+        left: 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    /* Textos y párrafos */
     p,
     .section-intro,
     .food-description,
@@ -633,112 +646,27 @@ p,
     .section-intro {
         font-size: 1.1rem;
     }
-}
 
-@media screen and (max-width: 600px) {
-    /* Hero section */
+    /* Layout */
     .hero-section {
-        height: 70vh;
-        position: relative;
+        flex-direction: column;
+        height: auto;
     }
 
     .hero-image-container {
-        position: relative;
+        height: 100vh;
         width: 100%;
-        height: 80vh;
     }
 
-    .hero-content {
-        position: relative;
-        left: 0;
-        top: 0;
-        transform: none;
-        width: 100%;
-        max-width: 100%;
-        padding: 2rem 1rem;
-        text-align: left;
-    }
-
-    /* Content container */
     .content-container {
-        position: relative; 
-        width: 100%; 
-        transform: none;
-        opacity: 1; 
-        height: auto;
-        overflow-y: visible; 
-        padding: 1rem;
+        position: relative;
+        top: 0;
+        right: 0;
+        width: 100%;
     }
 
-    .sections-wrapper {
-        padding: 1rem;
-        margin-top: 1rem; 
-    }
-
-    .content-section {
-        padding: 1rem;
-        margin-bottom: 2rem; 
-    }
-
-    .content_h2 {
-        font-size: 1.5rem;
-    }
-
-    /* Environment section */
     .environment-content {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-    }
-
-    .environment-gallery {
-        margin: 1rem 0;
-        width: 100%;
-    }
-
-    .gallery-main {
-        height: 300px;
-    }
-
-    .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-        height: auto;
-        gap: 0.5rem;
-    }
-
-    .gallery-grid img {
-        height: 150px;
-    }
-
-    /* Two column layout */
-    .two-column-layout {
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-        margin-top: 2rem;
-    }
-
-    .column-left,
-    .column-right {
-        width: 100%;
-    }
-
-    .highlight-title {
-        margin-bottom: 1rem;
-    }
-
-    /* Figure captions */
-    figcaption {
-        margin-top: 0.3rem;
-        margin-bottom: 1.5rem;
-        font-size: 0.8rem;
-    }
-
-    /* Share button */
-    .hero-content .share-button {
-        margin-top: 1.5rem;
-        padding: 0.6rem 1.2rem;
-        font-size: 0.9rem;
+        gap: 3rem;
     }
 }
 
