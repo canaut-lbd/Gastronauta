@@ -737,7 +737,6 @@ body {
 
     .carousel-track {
         display: flex;
-
         flex-direction: column;
         gap: 1.5rem;
         position: static;

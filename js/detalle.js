@@ -162,8 +162,8 @@ function initializeImageComparisonSlider() {
     function setInitialState() {
         const rect = comparisonContainer.getBoundingClientRect();
         const initialPercentage = 50; // Posición inicial en el centro
-        sliderHandle.style.left = `${initialPercentage}%`;
-        imageBefore.style.clipPath = `inset(0 ${100 - initialPercentage}% 0 0)`;
+        sliderHandle.style.left = ${initialPercentage}%;
+        imageBefore.style.clipPath = inset(0 ${100 - initialPercentage}% 0 0);
     }
 
     // Helper function to update slider position and clip-path
@@ -177,8 +177,8 @@ function initializeImageComparisonSlider() {
         const percentage = (offsetX / rect.width) * 100;
 
         // Actualizar posición del deslizador y clip-path
-        sliderHandle.style.left = `${percentage}%`;
-        imageBefore.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+        sliderHandle.style.left = ${percentage}%;
+        imageBefore.style.clipPath = inset(0 ${100 - percentage}% 0 0);
     }
 
     // Start dragging
@@ -376,16 +376,3 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-
-// Añade el botón de compartir a los elementos que ocultan el cursor
-const shareButton = document.querySelector('.share-button');
-if (shareButton) {
-    shareButton.addEventListener('mouseenter', () => {
-        document.querySelector('.custom-cursor').style.opacity = 0;
-    });
-
-    shareButton.addEventListener('mouseleave', () => {
-        document.querySelector('.custom-cursor').style.opacity = 1;
-    });
-}
-

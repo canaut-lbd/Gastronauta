@@ -637,25 +637,23 @@ p,
 }
 
 @media screen and (max-width: 600px) {
-    /* Reset de estilos para el hero */
     .hero-section {
-        height: auto;
+        height: auto; /* Deja que la altura sea ajustada automáticamente */
         position: relative;
-        overflow: visible;
+        overflow: visible; /* Permitir contenido visible */
+        display: flex;
+        flex-direction: column; /* Apila en columna */
     }
 
     .hero-image-container {
         position: relative;
         width: 100%;
-        height: 60vh;
-        clip-path: none;
-        overflow: hidden;
+        height: auto; /* Ajusta la altura automáticamente */
     }
 
     .hero-image {
-        position: relative; /* Cambiado de absolute */
         width: 100%;
-        height: 100%;
+        height: auto; /* Ajusta el tamaño proporcionalmente */
         object-fit: cover;
     }
 
@@ -663,80 +661,35 @@ p,
         position: relative;
         width: 100%;
         padding: 2rem 1rem;
-        background: rgba(0, 0, 0, 0.7);
-        transform: none;
         z-index: 2;
+        background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro para legibilidad */
     }
 
-    /* Contenedor principal */
     .content-container {
-        position: relative;
-        width: 100%;
+        position: relative; 
+        width: 100%; 
         transform: none;
-        padding: 1rem;
-        overflow: visible;
-        z-index: 1;
-    }
-
-    /* Ajustes para la sección de entorno */
-    .environment-content {
-        position: relative;
-        z-index: 1;
-    }
-
-    .gallery-grid {
-        position: relative;
-        z-index: 1;
-        margin-bottom: 2rem;
-    }
-
-    .two-column-layout {
-        position: relative;
-        z-index: 1;
-        margin-top: 2rem;
-        clear: both;
-    }
-
-    /* Asegurar que todas las secciones tengan el espacio correcto */
-    .content-section {
-        position: relative;
-        margin-bottom: 3rem;
-        clear: both;
-    }
-
-    /* Ajuste específico para la última sección */
-    .content-section:last-child {
-        margin-bottom: 0;
-        padding-bottom: 3rem;
-    }
-}
-
-/* Ajuste para content-container en dispositivos pequeños */
-@media screen and (max-width: 600px) {
-    .content-container {
-        position: relative; /* Permite que el scroll funcione naturalmente */
-        transform: none; /* Elimina la animación de entrada desde la derecha */
         opacity: 1; /* Asegúrate de que sea visible */
-        height: auto; /* Ajusta la altura automáticamente */
+        height: auto;
         overflow-y: visible; /* Habilita el scroll vertical */
+        padding: 1rem;
     }
-}
 
-/* Ajustes generales en contenido para móviles */
-@media screen and (max-width: 600px) {
     .sections-wrapper {
-        padding: 1rem; /* Reduce el padding en dispositivos pequeños */
-        margin-top: 1rem; /* Ajusta el margen superior */
+        padding: 1rem;
+        margin-top: 1rem; 
     }
 
     .content-section {
-        padding: 1rem; /* Reduce el padding */
+        padding: 1rem;
+        margin-bottom: 2rem; 
     }
 
     .content_h2 {
         font-size: 1.5rem; /* Reduce el tamaño del título */
     }
 }
+
 /* ==========
 ESTILOS SLIDER
 === */
