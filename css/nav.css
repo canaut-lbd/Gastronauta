@@ -2,8 +2,6 @@
     --beige: #F1EFEB;
     --dark_green: #3C3812;
     --orange: #FAC27D;
-    --pink: #F0B3C5;
-    --blue: #A0D8F2;
     --green: #928D51;
     --cursor: #3C381280;
 }
@@ -178,6 +176,8 @@ header {
 }
 
 .menu_items li {
+    display:flex;
+    flex-direction: column;
     list-style: none;
     margin: 1rem 0;
     transform: translateY(-20px);
@@ -264,6 +264,34 @@ header {
     .logo {
         max-width: 65%;
     }
+
+    /* Ajustes para el menú desplegable en móvil */
+    .menu_items {
+        width: auto;
+        min-width: 200px;
+        right: -1rem; 
+        background-color: var(--beige);
+        padding: 1rem;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .menu_items li {
+        width: 100%;
+        text-align: right;
+        white-space: nowrap; 
+    }
+
+    .menu_items a {
+        display: block;
+        padding: 0.5rem 1rem;
+    }
+}
+
+/* Para pantallas muy pequeñas */
+@media (max-width: 360px) {
+    .menu_items {
+        right: -2rem; 
+    }
 }
 
 .menu-rutas .logo {
@@ -271,7 +299,7 @@ header {
     text-decoration: none;
 }
 
-/* Y para asegurarnos de que no hay color de enlace en ningún estado */
+/* Enlaces sin color */
 .menu-rutas .logo:link,
 .menu-rutas .logo:visited,
 .menu-rutas .logo:hover,
@@ -279,4 +307,6 @@ header {
     color: inherit;
     text-decoration: none;
 }
+
+
 

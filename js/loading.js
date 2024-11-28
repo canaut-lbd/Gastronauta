@@ -1,6 +1,6 @@
-// Verifica si es la primera carga de la sesión
+// Verifico si la carga del loading es la primera sesión
 if (!sessionStorage.getItem('hasLoaded')) {
-    // Si no ha cargado antes, se muestra la pantalla de carga
+    // Si no se ha cargado antes, se muestra la pantalla de carga
     sessionStorage.setItem('hasLoaded', 'true');
 
     let counterElement = document.getElementById('counter');
@@ -44,12 +44,12 @@ if (!sessionStorage.getItem('hasLoaded')) {
             duration: 2,
             ease: "power2.out",
             onComplete: () => {
-                // Detenemos la rotación y ocultamos el logo
+                // Se detiene la rotación y ocultamos el logo
                 gsap.killTweensOf(rotatingImage);
                 rotatingImage.style.display = 'none';
                 counterElement.style.display = 'none';
 
-                // SOLO DESPUÉS de que termine el efecto del logo, movemos la página
+                // SOLO DESPUÉS de que termine el efecto del logo, entramos en la página
                 gsap.to(loadingPage, {
                     y: '-100%',
                     duration: 1,
@@ -73,7 +73,7 @@ if (!sessionStorage.getItem('hasLoaded')) {
     updateCounter();
 
 } else {
-    // Si ya ha cargado antes, oculta la pantalla de carga y muestra el contenido directamente
+    // Si ya ha cargado antes, oculto la pantalla de carga y muestra el contenido directamente
     document.getElementById('loading_page').style.display = 'none';
     document.body.style.overflow = 'auto';
     if (typeof initHeroAnimation === "function") {
