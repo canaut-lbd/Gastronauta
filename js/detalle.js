@@ -27,7 +27,6 @@ requestAnimationFrame(raf);
 // Registro del plugin ScrollTrigger y SplitText de GSAP
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
-
 // ========================================
 // SPLITTEXT HERO
 // ========================================
@@ -127,6 +126,7 @@ if (!isMobile) {
         ease: "power2.inOut"
     }, "<");
 
+
 // ========================================
 // CONEXIÓN ENTRE LENIS Y SCROLLTRIGGER
 // ========================================
@@ -142,106 +142,6 @@ gsap.ticker.add((time) => {
 });
 ScrollTrigger.refresh();
 
-// ========================================
-// SLIDER DE COMPARACIÓN DE IMÁGENES
-// ========================================
-
-function initializeImageComparisonSlider() {
-    const sliderHandle = document.querySelector(".slider-handle");
-    const imageBefore = document.querySelector(".image-before");
-    const comparisonContainer = document.querySelector(".image-comparison");
-
-    if (!sliderHandle || !imageBefore || !comparisonContainer) {
-        console.warn("Slider de comparación no encontrado. Verifica tu HTML.");
-        return;
-    }
-
-    let isDragging = false;
-
-    // Set initial positions
-    function setInitialState() {
-        const rect = comparisonContainer.getBoundingClientRect();
-        const initialPercentage = 50; // Posición inicial en el centro
-        sliderHandle.style.left = ${initialPercentage}%;
-        imageBefore.style.clipPath = inset(0 ${100 - initialPercentage}% 0 0);
-    }
-
-    // Helper function to update slider position and clip-path
-    function updateSlider(clientX) {
-        const rect = comparisonContainer.getBoundingClientRect();
-        let offsetX = clientX - rect.left;
-
-        // Limitar el movimiento dentro del contenedor
-        offsetX = Math.max(0, Math.min(offsetX, rect.width));
-
-        const percentage = (offsetX / rect.width) * 100;
-
-        // Actualizar posición del deslizador y clip-path
-        sliderHandle.style.left = ${percentage}%;
-        imageBefore.style.clipPath = inset(0 ${100 - percentage}% 0 0);
-    }
-
-    // Start dragging
-    sliderHandle.addEventListener("mousedown", (e) => {
-        isDragging = true;
-        updateSlider(e.clientX);
-    });
-
-    // Stop dragging
-    window.addEventListener("mouseup", () => {
-        isDragging = false;
-    });
-
-    // Move slider on mouse move
-    window.addEventListener("mousemove", (e) => {
-        if (isDragging) updateSlider(e.clientX);
-    });
-
-    // Support touch events
-    comparisonContainer.addEventListener("touchstart", (e) => {
-        isDragging = true;
-        updateSlider(e.touches[0].clientX);
-    });
-
-    comparisonContainer.addEventListener("touchmove", (e) => {
-        if (isDragging) updateSlider(e.touches[0].clientX);
-    });
-
-    comparisonContainer.addEventListener("touchend", () => {
-        isDragging = false;
-    });
-
-    // Set initial state on load
-    setInitialState();
-}
-
-// Initialize everything after DOM is ready
-document.addEventListener("DOMContentLoaded", () => {
-    // Initialize Lenis and GSAP animations
-    lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add((time) => {
-        lenis.raf(time * 1000);
-    });
-
-    // Initialize the image comparison slider
-    initializeImageComparisonSlider();
-
-    // Inicialización del Swiper
-    const swiper = new Swiper('.food-carousel', {
-        slidesPerView: 1,
-        spaceBetween: 30,
-        grabCursor: false,
-        preventInteractionOnTransition: true,
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        },
-        effect: 'slide',
-        resistance: true,
-        resistanceRatio: 0.85,
-        watchOverflow: true,
-    });
-});
 
 // =============================================
 //  3. ANIMACIONES DE SECCIONES
