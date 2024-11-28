@@ -3,7 +3,8 @@
 // ========================================
 
 // Inicialización de Lenis para smooth scroll
-const isMobile = window.innerWidth <= 600; // Unificamos a 600px
+//He creado la constante isMobile para evitar errores en responsive
+const isMobile = window.innerWidth <= 600; 
 const lenis = new Lenis({
     duration: 0.8,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -17,7 +18,7 @@ const lenis = new Lenis({
     infinite: false
 });
 
-// Manejador del scroll suave de Lenis
+// Función para manejar el scroll suave de Lenis
 function raf(time) {
     lenis.raf(time);
     requestAnimationFrame(raf);
@@ -32,7 +33,7 @@ gsap.registerPlugin(ScrollTrigger, SplitText);
 // ========================================
 
 document.addEventListener("DOMContentLoaded", function () {
-    // Seleccionar los elementos del título y el párrafo
+    // Selecciono el título y el párrafo del hero del detalle
     const titleElement = document.querySelector(".hero-content h1");
     const paragraphElement = document.querySelector(".hero-content p");
 
@@ -43,41 +44,38 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Dividir el texto del título en caracteres
     const splitTitle = new SplitText(titleElement, { type: "chars" });
-
-    // Dividir el texto del párrafo en líneas (en lugar de palabras o caracteres)
+    // Dividir el texto del párrafo en líneas (en lugar de palabras o caracteres) para que sea más dinámico
     const splitParagraph = new SplitText(paragraphElement, { type: "lines" });
-
-    // Crear la animación
     const tl = gsap.timeline();
 
     // Animación para las letras del título
     tl.from(splitTitle.chars, {
-        y: 50, // Suben desde abajo
+        y: 50, 
         opacity: 0,
-        stagger: 0.02, // Menor desfase entre caracteres
-        ease: "power2.out", // Movimiento más suave
-        duration: 0.8, // Duración total
+        stagger: 0.02, 
+        ease: "power2.out", 
+        duration: 0.8, 
     });
 
     // Animación para las líneas del párrafo
     tl.from(
         splitParagraph.lines,
         {
-            y: 30, // Suben desde abajo
+            y: 30, 
             opacity: 0,
-            stagger: 0.1, // Más rápido entre líneas
-            ease: "power2.out", // Movimiento más suave
-            duration: 1, // Duración total
+            stagger: 0.1, 
+            ease: "power2.out", 
+            duration: 1, 
         },
-        "-=0.4" // Superponer ligeramente con el final del título
+        "-=0.4" 
     );
 
-    // Después de la animación del texto
+    // Después de la animación del texto sube el botón de compartir
     gsap.to('.hero-content .share-button', {
         opacity: 1,
         y: 0,
         duration: 0.5,
-        delay: 0.5, // Ajusta este valor según cuando quieras que aparezca después del texto
+        delay: 0.5, 
         ease: "power2.out"
     });
 });
@@ -85,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // ========================================
 // ANIMACIÓN PRINCIPAL DEL HERO (SCROLLTRIGGER)
 // ========================================
-// Timeline principal solo para desktop
+// Si el dispositivo es desktop, se ejecuta la animación principal del hero, he retirado el scrolltrigger para que no se ejecute en mobile para dejar que la experiencia sea más fluida en vertical
 if (!isMobile) {
     const tl = gsap.timeline({
         scrollTrigger: {
@@ -98,7 +96,7 @@ if (!isMobile) {
         }
     });
 
-    // Aseguramos posición inicial centrada
+    // Aseguro que el Hero empieza centrado
     gsap.set(".hero-content", {
         left: "50%",
         top: "50%",
@@ -160,7 +158,7 @@ ScrollTrigger.refresh();
 
 const isMobile = window.innerWidth <= 768;
 
-// Animaciones solo para desktop
+// Animaciones solo para desktop. Aplico un scrolltrigger para que se ejecute en desktop y no en mobile
 gsap.utils.toArray('.content-section').forEach((section) => {
     gsap.from(section, {
         scrollTrigger: {
@@ -170,7 +168,7 @@ gsap.utils.toArray('.content-section').forEach((section) => {
             scrub: 1.5,
             scroller: ".content-container",
             toggleActions: "play none none reverse"
-        },
+        }, //Aplico un efecto de blurr y de escalado cuando el usuario scrollea hasta la seccion
         y: 100,
         scale: 0.95,
         opacity: 0.5,
