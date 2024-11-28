@@ -19,32 +19,34 @@ body {
 
 /* Sección hero - imagen principal de la ruta */
 .hero-section {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
     height: 100vh;
+    position: relative;
     overflow: hidden;
 }
 
 .hero-image-container {
-    position: absolute;
+    position: relative;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
+}
+
+.hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .image-overlay {
     position: absolute;
-    bottom: 0;
+    top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0) 0%,
-        rgba(0, 0, 0, 0.5) 100%
-    );
+    background: rgba(0, 0, 0, 0.3);
     z-index: 1;
-    mix-blend-mode: multiply;
 }
 
 .hero-content {
@@ -60,7 +62,7 @@ body {
     overflow-wrap: break-word;
     overflow: hidden;
     padding-inline: 2rem;
-   
+
 }
 
 
@@ -88,9 +90,6 @@ body {
     object-fit: cover;
     display: block;
 }
-
-
-
 
 /* Sección de contenido de la derecha: secciones info, historia, comida, etc. */
 .content-container {
@@ -638,126 +637,66 @@ p,
 
 @media screen and (max-width: 600px) {
     .hero-section {
-        height: auto;
+        height: auto; /* Deja que la altura sea ajustada automáticamente */
         position: relative;
     }
 
     .hero-image-container {
         position: relative;
         width: 100%;
-        height: 90vh;
-        overflow: hidden;
-    }
-
-    .image-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.3);
-        z-index: 1;
-    }
-
-    .hero-image {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        z-index: 0;
+        height: 60vh; /* Altura fija para la imagen */
     }
 
     .hero-content {
         position: relative;
+        left: 0;
+        top: 0;
+        transform: none;
         width: 100%;
+        max-width: 100%;
         padding: 2rem 1rem;
-        z-index: 2;
+        text-align: left; /* O mantén center si prefieres */
     }
 
-    /* Content container y secciones */
     .content-container {
-        position: relative;
-        width: 100%;
+        position: relative; 
+        width: 100%; 
         transform: none;
-        opacity: 1;
+        padding-top: 1rem;
+    }
+
+    /* Asegurar que todo fluya normalmente */
+    .hero-image {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+/* Ajuste para content-container en dispositivos pequeños */
+@media screen and (max-width: 600px) {
+    .content-container {
+        position: relative; /* Permite que el scroll funcione naturalmente */
+        transform: none; /* Elimina la animación de entrada desde la derecha */
+        opacity: 1; /* Asegúrate de que sea visible */
         height: auto;
-        overflow-y: visible;
+        overflow-y: visible; /* Habilita el scroll vertical */
         padding: 1rem;
     }
 
     .sections-wrapper {
         padding: 1rem;
-        margin-top: 1rem;
+        margin-top: 1rem; 
     }
 
     .content-section {
         padding: 1rem;
-        margin-bottom: 2rem;
+        margin-bottom: 2rem; 
     }
 
     .content_h2 {
-        font-size: 1.5rem;
-    }
-
-    figcaption {
-        margin-top: 0.3rem;
-        margin-bottom: 1.5rem;
-        font-size: 0.8rem;
-    }
-
-    /* Reorganización del environment-content */
-    .environment-content {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-    }
-
-    .environment-gallery {
-        width: 100%;
-        order: 1; /* Asegura que la galería aparezca primero */
-    }
-
-    .gallery-main {
-        width: 100%;
-        margin-bottom: 1rem;
-    }
-
-    .gallery-main img {
-        width: 100%;
-        height: auto;
-        object-fit: cover;
-    }
-
-    .gallery-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 0.5rem;
-        margin-bottom: 2rem;
-    }
-
-    .gallery-thumbnail {
-        width: 100%;
-        height: 100px;
-        object-fit: cover;
-    }
-
-    .two-column-layout {
-        width: 100%;
-        order: 2; /* El texto aparecerá después de la galería */
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    .column-left, 
-    .column-right {
-        width: 100%;
-    }
-
-    .highlight-title {
-        margin-bottom: 1rem;
+        font-size: 1.5rem; /* Reduce el tamaño del título */
     }
 }
 
@@ -791,7 +730,16 @@ ESTILOS SLIDER
 }
 
 figure {
-    margin: 0; 
+    margin: 0;  /* Reset del margen por defecto */
     padding: 0;
     position: relative;
+}
+
+/* Ajuste para móvil */
+@media screen and (max-width: 600px) {
+    figcaption {
+        margin-top: 0.3rem;
+        margin-bottom: 1.5rem;
+        font-size: 0.8rem;
+    }
 }

@@ -98,7 +98,18 @@ if (!isMobile) {
         }
     });
 
-    // Animaciones del hero solo para desktop
+    // Aseguramos posición inicial centrada
+    gsap.set(".hero-content", {
+        left: "50%",
+        top: "50%",
+        xPercent: -50,
+        yPercent: -50,
+        top: "50%",
+        width: "60%",
+        textAlign: "center",
+        alignItems: "center"
+    });
+
     tl.fromTo(".hero-image-container", {
         clipPath: "inset(0 0% 0 0)",
         width: "100vw"
@@ -108,13 +119,14 @@ if (!isMobile) {
         duration: 1.8,
         ease: "power2.inOut"
     })
-    .fromTo(".hero-content", {
-        width: "100%",
-    }, {
+    .to(".hero-content", {
+        left: "35%",
+        x: "-12vw",
         width: "40%",
+        textAlign: "center",
+        alignItems: "center",
         duration: 1.8,
-        ease: "power1.out",
-        transformOrigin: "center center"
+        ease: "power1.out"
     }, "<")
     .fromTo(".content-container", {
         x: "100%",
@@ -125,7 +137,6 @@ if (!isMobile) {
         duration: 1.5,
         ease: "power2.inOut"
     }, "<");
-
 
 // ========================================
 // CONEXIÓN ENTRE LENIS Y SCROLLTRIGGER
