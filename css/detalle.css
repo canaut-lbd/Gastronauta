@@ -637,15 +637,23 @@ p,
 }
 
 @media screen and (max-width: 600px) {
+    /* Hero section */
     .hero-section {
-        height: auto; /* Deja que la altura sea ajustada automáticamente */
+        height: auto;
         position: relative;
     }
 
     .hero-image-container {
         position: relative;
         width: 100%;
-        height: 60vh; /* Altura fija para la imagen */
+        height: 60vh;
+    }
+
+    .hero-image {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 
     .hero-content {
@@ -656,45 +664,35 @@ p,
         transform: none;
     }
 
+    /* Content container y secciones */
     .content-container {
-        position: relative; 
-        width: 100%; 
-        transform: none;
-        padding-top: 1rem;
-    }
-
-    /* Asegurar que todo fluya normalmente */
-    .hero-image {
-        position: absolute;
+        position: relative;
         width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-}
-
-/* Ajuste para content-container en dispositivos pequeños */
-@media screen and (max-width: 600px) {
-    .content-container {
-        position: relative; /* Permite que el scroll funcione naturalmente */
-        transform: none; /* Elimina la animación de entrada desde la derecha */
-        opacity: 1; /* Asegúrate de que sea visible */
+        transform: none;
+        opacity: 1;
         height: auto;
-        overflow-y: visible; /* Habilita el scroll vertical */
+        overflow-y: visible;
         padding: 1rem;
     }
 
     .sections-wrapper {
         padding: 1rem;
-        margin-top: 1rem; 
+        margin-top: 1rem;
     }
 
     .content-section {
         padding: 1rem;
-        margin-bottom: 2rem; 
+        margin-bottom: 2rem;
     }
 
     .content_h2 {
-        font-size: 1.5rem; /* Reduce el tamaño del título */
+        font-size: 1.5rem;
+    }
+
+    figcaption {
+        margin-top: 0.3rem;
+        margin-bottom: 1.5rem;
+        font-size: 0.8rem;
     }
 }
 
@@ -728,16 +726,7 @@ ESTILOS SLIDER
 }
 
 figure {
-    margin: 0;  /* Reset del margen por defecto */
+    margin: 0; 
     padding: 0;
     position: relative;
-}
-
-/* Ajuste para móvil */
-@media screen and (max-width: 600px) {
-    figcaption {
-        margin-top: 0.3rem;
-        margin-bottom: 1.5rem;
-        font-size: 0.8rem;
-    }
 }
