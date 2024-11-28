@@ -59,7 +59,7 @@ body {
     align-items: center; 
     position: absolute;
     z-index: 2;
-    overflow-wrap: break-word;
+    word-break: normal;
     overflow: hidden;
     padding-inline: 2rem;
 
@@ -69,7 +69,7 @@ body {
 .hero-content h1 {
     color: var(--beige);
     font-family: 'NeueWorld',serif;
-    font-size: 6rem;
+    font-size: 5rem;
     margin: 0;
     margin-bottom: 1rem;
     font-weight: 500;
@@ -79,7 +79,7 @@ body {
 .hero-content p {
     color: var(--beige);
     font-family: 'NeueMontreal', sans-serif;
-    font-size: 1.2rem;
+    font-size: 1rem;
     margin: 0;
     opacity: 0.9;
 }
