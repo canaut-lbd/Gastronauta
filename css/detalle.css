@@ -62,14 +62,14 @@ body {
     overflow-wrap: break-word;
     overflow: hidden;
     padding-inline: 2rem;
-
 }
 
 
 .hero-content h1 {
     color: var(--beige);
     font-family: 'NeueWorld',serif;
-    font-size: 6rem;
+    word-break: keep-all;
+    font-size: 5rem;
     margin: 0;
     margin-bottom: 1rem;
     font-weight: 500;
