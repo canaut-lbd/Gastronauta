@@ -3,6 +3,7 @@
 // ========================================
 
 // Inicialización de Lenis para smooth scroll
+const isMobile = window.innerWidth <= 600; // Unificamos a 600px
 const lenis = new Lenis({
     duration: 0.8,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -25,6 +26,7 @@ requestAnimationFrame(raf);
 
 // Registro del plugin ScrollTrigger y SplitText de GSAP
 gsap.registerPlugin(ScrollTrigger, SplitText);
+
 
 // ========================================
 // SPLITTEXT HERO
@@ -81,50 +83,49 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-
 // ========================================
 // ANIMACIÓN PRINCIPAL DEL HERO (SCROLLTRIGGER)
 // ========================================
+// Timeline principal solo para desktop
+if (!isMobile) {
+    const tl = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".hero-section",
+            start: "top top",
+            end: "+=100%",
+            scrub: 2,
+            pin: true,
+            anticipatePin: 1
+        }
+    });
 
-const tl = gsap.timeline({
-    scrollTrigger: {
-        trigger: ".hero-section",
-        start: "top top",
-        end: "+=100%",
-        scrub: 2,
-        pin: true,
-        anticipatePin: 1
-    }
-});
-
-// Animación de la imagen principal y contracción horizontal del hero-content
-tl.fromTo(".hero-image-container", {
-    clipPath: "inset(0 0% 0 0)", // Imagen cubre toda la pantalla
-    width: "100vw"
-}, {
-    clipPath: "inset(0 50% 0 0)", // Efecto cortina
-    width: "100vw",
-    duration: 1.8,
-    ease: "power2.inOut"
-})
-.fromTo(".hero-content", {
-    width: "100%", // Ancho inicial
-}, {
-    width: "40%", // Reducimos a un 70% en lugar de 50%
-    duration: 1.8, // Movimiento más lento
-    ease: "power1.out", // Movimiento más suave
-    transformOrigin: "center center" // Reducción desde el centro
-}, "<") // Sincronizado con el efecto cortina
-.fromTo(".content-container", {
-    x: "100%",
-    opacity: 0
-}, {
-    x: "0%",
-    opacity: 1,
-    duration: 1.5,
-    ease: "power2.inOut"
-}, "<");
-
+    // Animaciones del hero solo para desktop
+    tl.fromTo(".hero-image-container", {
+        clipPath: "inset(0 0% 0 0)",
+        width: "100vw"
+    }, {
+        clipPath: "inset(0 50% 0 0)",
+        width: "100vw",
+        duration: 1.8,
+        ease: "power2.inOut"
+    })
+    .fromTo(".hero-content", {
+        width: "100%",
+    }, {
+        width: "40%",
+        duration: 1.8,
+        ease: "power1.out",
+        transformOrigin: "center center"
+    }, "<")
+    .fromTo(".content-container", {
+        x: "100%",
+        opacity: 0
+    }, {
+        x: "0%",
+        opacity: 1,
+        duration: 1.5,
+        ease: "power2.inOut"
+    }, "<");
 
 // ========================================
 // CONEXIÓN ENTRE LENIS Y SCROLLTRIGGER
@@ -249,25 +250,24 @@ document.addEventListener("DOMContentLoaded", () => {
 const isMobile = window.innerWidth <= 768;
 
 // Animaciones solo para desktop
-if (!isMobile) {
-    gsap.utils.toArray('.content-section').forEach((section) => {
-        gsap.from(section, {
-            scrollTrigger: {
-                trigger: section,
-                start: "top 85%",
-                end: "top 35%",
-                scrub: 1.5,
-                scroller: ".content-container",
-                toggleActions: "play none none reverse"
-            },
-            y: 100,
-            scale: 0.95,
-            opacity: 0.5,
-            filter: "blur(8px)",
-            transformOrigin: "center center",
-            ease: "power2.inOut"
-        });
+gsap.utils.toArray('.content-section').forEach((section) => {
+    gsap.from(section, {
+        scrollTrigger: {
+            trigger: section,
+            start: "top 85%",
+            end: "top 35%",
+            scrub: 1.5,
+            scroller: ".content-container",
+            toggleActions: "play none none reverse"
+        },
+        y: 100,
+        scale: 0.95,
+        opacity: 0.5,
+        filter: "blur(8px)",
+        transformOrigin: "center center",
+        ease: "power2.inOut"
     });
+});
 }
 
 // =============================================
