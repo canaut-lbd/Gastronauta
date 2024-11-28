@@ -644,7 +644,7 @@ p,
     .hero-image-container {
         position: relative;
         width: 100%;
-        height: 60vh; /* Altura fija para la imagen */
+        height: 80vh; /* Altura fija para la imagen */
     }
 
     .hero-content {
