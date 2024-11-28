@@ -621,20 +621,6 @@ p,
 
 /* Ajustes responsive */
 @media screen and (max-width: 768px) {
-    /* Hero y botones */
-    .hero-content .share-button {
-        margin-top: 1.5rem;
-        padding: 0.6rem 1.2rem;
-        font-size: 0.9rem;
-    }
-
-    .back-button {
-        top: 1.5rem;
-        left: 1.5rem;
-        font-size: 0.9rem;
-    }
-
-    /* Textos y párrafos */
     p,
     .section-intro,
     .food-description,
@@ -646,27 +632,112 @@ p,
     .section-intro {
         font-size: 1.1rem;
     }
+}
 
-    /* Layout */
+@media screen and (max-width: 600px) {
+    /* Hero section */
     .hero-section {
-        flex-direction: column;
-        height: auto;
+        height: 70vh;
+        position: relative;
     }
 
     .hero-image-container {
-        height: 100vh;
-        width: 100%;
-    }
-
-    .content-container {
         position: relative;
+        width: 100%;
+        height: 80vh;
+    }
+
+    .hero-content {
+        position: relative;
+        left: 0;
         top: 0;
-        right: 0;
+        transform: none;
+        width: 100%;
+        max-width: 100%;
+        padding: 2rem 1rem;
+        text-align: left;
+    }
+
+    /* Content container */
+    .content-container {
+        position: relative; 
+        width: 100%; 
+        transform: none;
+        opacity: 1; 
+        height: auto;
+        overflow-y: visible; 
+        padding: 1rem;
+    }
+
+    .sections-wrapper {
+        padding: 1rem;
+        margin-top: 1rem; 
+    }
+
+    .content-section {
+        padding: 1rem;
+        margin-bottom: 2rem; 
+    }
+
+    .content_h2 {
+        font-size: 1.5rem;
+    }
+
+    /* Environment section */
+    .environment-content {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .environment-gallery {
+        margin: 1rem 0;
         width: 100%;
     }
 
-    .environment-content {
-        gap: 3rem;
+    .gallery-main {
+        height: 300px;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        height: auto;
+        gap: 0.5rem;
+    }
+
+    .gallery-grid img {
+        height: 150px;
+    }
+
+    /* Two column layout */
+    .two-column-layout {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .column-left,
+    .column-right {
+        width: 100%;
+    }
+
+    .highlight-title {
+        margin-bottom: 1rem;
+    }
+
+    /* Figure captions */
+    figcaption {
+        margin-top: 0.3rem;
+        margin-bottom: 1.5rem;
+        font-size: 0.8rem;
+    }
+
+    /* Share button */
+    .hero-content .share-button {
+        margin-top: 1.5rem;
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
     }
 }
 
